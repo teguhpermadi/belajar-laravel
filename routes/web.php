@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,3 +28,6 @@ Auth::routes();
 Route::get('/home', function() {
     return view('home');
 })->name('home')->middleware('auth');
+
+Route::get('profile', [UserController::class, 'profile'])->name('profile');
+Route::post('profile', [UserController::class, 'update_avatar'])->name('update_avatar');
