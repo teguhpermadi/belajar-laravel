@@ -14,7 +14,12 @@ class AddColumnToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('avatar')->default('default.png');
+            $table->string('username')->unique()->after('email');
+            $table->string('avatar')->nullable();
+            $table->string('tempatlahir')->nullable();
+            $table->date('tanggallahir')->nullable();
+            $table->enum('jeniskelamin', ['laki-laki', 'perempuan'])->nullable();
+            $table->string('alamat')->nullable();
         });
     }
 
@@ -26,6 +31,7 @@ class AddColumnToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('username');
             $table->dropColumn('avatar');
         });
     }

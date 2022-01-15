@@ -30,4 +30,7 @@ Route::get('/home', function() {
 })->name('home')->middleware('auth');
 
 Route::get('profile', [UserController::class, 'profile'])->name('profile');
-Route::post('profile', [UserController::class, 'update_avatar'])->name('update_avatar');
+Route::post('update_avatar', [UserController::class, 'update_avatar'])->name('update_avatar');
+Route::post('update_profile', [UserController::class, 'update_profile'])->name('update_profile');
+Route::post('update_emailpassword', [UserController::class, 'update_emailpassword'])->name('update_emailpassword');
+Route::post('delete_avatar', [UserController::class, 'delete_avatar'])->name('delete_avatar');

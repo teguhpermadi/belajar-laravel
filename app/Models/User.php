@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -21,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'username',
     ];
 
     /**
@@ -45,7 +47,8 @@ class User extends Authenticatable
     public function adminlte_image()
     {
         // return 'https://picsum.photos/300/300';
-        return 'storage/uploads/avatars/'.$this->avatar;
+        $url = Storage::url('uploads/avatars/'.$this->avatar);
+        return $url;
     }
 
     public function adminlte_desc()
