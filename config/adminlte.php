@@ -247,6 +247,11 @@ return [
             'can'  => 'manage-blog',
         ],
         [
+            'text'        => 'Profil Sekolah',
+            'url'         => 'sekolah',
+            'icon'        => 'fas fa-school',
+        ],
+        [
             'text'        => 'pages',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',
