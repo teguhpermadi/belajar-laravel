@@ -69,12 +69,13 @@ class ProfilSekolahController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request);
         $profilSekolah = ProfilSekolah::find($id);
         $profilSekolah->nama = $request->nama;
         $profilSekolah->npsn = $request->npsn;
         $profilSekolah->alamat = $request->alamat;
         $profilSekolah->provinsi = $request->provinsi;
-        $profilSekolah->distrik = $request->distrik;
+        $profilSekolah->kota = $request->kota;
         $profilSekolah->kecamatan = $request->kecamatan;
         $profilSekolah->kelurahan = $request->kelurahan;
         $profilSekolah->kodepos = $request->kodepos;

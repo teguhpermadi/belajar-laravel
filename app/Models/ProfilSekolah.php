@@ -13,7 +13,7 @@ class ProfilSekolah extends Model
         'npsn',
         'alamat',
         'provinsi',
-        'distrik',
+        'kota',
         'kecamatan',
         'kelurahan',
         'kodepos',

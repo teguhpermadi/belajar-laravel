@@ -14,7 +14,9 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
-        "laravolt/avatar": "^4.1"
+        "laravolt/avatar": "^4.1",
+        "laravolt/indonesia": "^0.30.0",
+        "livewire/livewire": "^2.9"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

@@ -26,7 +26,7 @@ class ProfilSekolahFactory extends Factory
             'npsn' => $this->faker->randomNumber($nbDigits = 8, $strict = false),
             'alamat' => $this->faker->address(),
             'provinsi' => $this->faker->state(),
-            'distrik' => $this->faker->city(),
+            'kota' => $this->faker->city(),
             'kecamatan' => $this->faker->citySuffix(),
             'kelurahan' => $this->faker->streetSuffix(),
             'telp' => $this->faker->phoneNumber(),

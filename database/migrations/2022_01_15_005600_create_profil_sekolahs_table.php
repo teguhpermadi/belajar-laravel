@@ -19,7 +19,7 @@ class CreateProfilSekolahsTable extends Migration
             $table->string('npsn')->nullable();
             $table->string('alamat')->nullable();
             $table->string('provinsi')->nullable();
-            $table->string('distrik')->nullable();
+            $table->string('kota')->nullable();
             $table->string('kecamatan')->nullable();
             $table->string('kelurahan')->nullable();
             $table->string('kodepos')->nullable();

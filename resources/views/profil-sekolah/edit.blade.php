@@ -16,6 +16,7 @@
                         value="{{ $sekolah->nama }}" />
                     <x-adminlte-input name="npsn" label="NPSN" placeholder="npsn" value="{{ $sekolah->npsn }}" />
                     <x-adminlte-input name="alamat" label="alamat" placeholder="alamat" value="{{ $sekolah->alamat }}" />
+                        <livewire:alamat, :provinsi="{{ $sekolah->provinsi }}" /> 
 
                     <x-adminlte-input name="kodepos" label="kodepos" placeholder="kodepos"
                         value="{{ $sekolah->kodepos }}" />
