@@ -1,6 +1,6 @@
 <div>
     <x-adminlte-select name="provinsi" label="Provinsi" wire:model="provinceId">
-        <x-adminlte-options :options="$options_provices" empty-option="pilih provinsi" :selected="$selected_province" />
+        <x-adminlte-options :options="$options_provinces" empty-option="pilih provinsi" :selected="$selected_province" />
     </x-adminlte-select>
 
     <x-adminlte-select name="kota" label="Kota" wire:model="cityId">

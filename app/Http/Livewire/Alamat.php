@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class Alamat extends Component
 {
-    public $options_provices = []; 
+    public $options_provinces = []; 
     public $options_cities = [];
     public $options_kecamatan = [];
     public $options_kelurahan = [];
@@ -19,18 +19,17 @@ class Alamat extends Component
     public function mount($provinsi = null, $kota = null, $kecamatan = null, $kelurahan = null)
     {
         $provinces = \Indonesia::allProvinces();
-        // dd($provinces);
-        // dd($provinsi);
-        if(!is_null($provinsi)){
+        
+        foreach ($provinces as $province) {
+            $this->options_provinces[$province->id] = $province->name;
+        }
+
+        if(($provinsi)){
             $this->selected_province = $provinsi;
         }
-        foreach ($provinces as $province) {
-            $this->options_provices[$province->id] = $province->name;
-        }
-
+        
         $this->cities = collect();
 
-        
     }
 
     public function render()
