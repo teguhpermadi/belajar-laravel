@@ -10,25 +10,24 @@
     <div class="row">
         <div class="col-12">
             <x-adminlte-card title="Data Sekolah">
+                <dl class="row">
+                    <dt class="col-sm-4">Nama Sekolah</dt>
+                    <dd class="col-sm-8">{{ $sekolah->nama }}</dd>
+                    <dt class="col-sm-4">NPSN</dt>
+                    <dd class="col-sm-8">{{ $sekolah->npsn }}</dd>
+                    <dt class="col-sm-4">alamat</dt>
+                    <dd class="col-sm-8">{{ $sekolah->alamat }}</dd>
+                    @livewire('show-alamat', ['village' => 608])
+                    <dt class="col-sm-4">kodepos</dt>
+                    <dd class="col-sm-8">{{ $sekolah->kodepos }}</dd>
+                    <dt class="col-sm-4">email</dt>
+                    <dd class="col-sm-8">{{ $sekolah->email }}</dd>
+                    <dt class="col-sm-4">website</dt>
+                    <dd class="col-sm-8">{{ $sekolah->website }}</dd>
+                </dl>
                 <form action="{{ route('sekolah.edit') }}" method="post">
                     @csrf
-                    <x-adminlte-input name="nama" label="Nama Sekolah" placeholder="nama sekolah"
-                        value="{{ $sekolah->nama }}" disabled />
-                    <x-adminlte-input name="npsn" label="NPSN" placeholder="npsn" value="{{ $sekolah->npsn }}" disabled/>
-                        @livewire('alamat', ['provinsi' => $sekolah->provinsi, 'kota' => $sekolah->kota, 'kecamatan' => $sekolah->kecamatan, 'kelurahan' => $sekolah->kelurahan])
-
-                        <x-adminlte-input name="alamat" label="alamat" placeholder="alamat" value="{{ $sekolah->alamat }}"
-                        disabled />
-
-                    <x-adminlte-input name="kodepos" label="kodepos" placeholder="kodepos"
-                        value="{{ $sekolah->kodepos }}" disabled />
-                    <x-adminlte-input name="telp" label="telp" placeholder="telp" value="{{ $sekolah->telp }}"
-                        disabled />
-                    <x-adminlte-input name="email" label="email" placeholder="email" value="{{ $sekolah->email }}"
-                        disabled />
-                    <x-adminlte-input name="website" label="website" placeholder="website"
-                        value="{{ $sekolah->website }}" disabled />
-                    <x-adminlte-button type="submit" label="Edit" theme="warning" />
+                        <x-adminlte-button type="submit" label="Edit" theme="warning" />
                 </form>
             </x-adminlte-card>
         </div>
