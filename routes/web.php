@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KelasController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfilSekolahController;
 use Illuminate\Support\Facades\Route;
@@ -41,3 +42,6 @@ Route::post('delete_avatar', [UserController::class, 'delete_avatar'])->name('de
 Route::get('sekolah', [ProfilSekolahController::class, 'index'])->name('sekolah.index');
 Route::post('sekolah/edit', [ProfilSekolahController::class, 'edit'])->name('sekolah.edit');
 Route::post('sekolah/update/{id}', [ProfilSekolahController::class, 'update'])->name('sekolah.update');
+
+// kelas
+Route::get('kelas', [KelasController::class, 'index'])->name('kelas.index');
