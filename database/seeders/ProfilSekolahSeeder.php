@@ -13,7 +13,7 @@ class ProfilSekolahSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\ProfilSekolah::factory(5)->create();
+        \App\Models\ProfilSekolah::factory(1)->create();
         
     }
 }

@@ -74,10 +74,10 @@ class ProfilSekolahController extends Controller
         $profilSekolah->nama = $request->nama;
         $profilSekolah->npsn = $request->npsn;
         $profilSekolah->alamat = $request->alamat;
-        $profilSekolah->provinsi = $request->provinsi;
-        $profilSekolah->kota = $request->kota;
-        $profilSekolah->kecamatan = $request->kecamatan;
-        $profilSekolah->kelurahan = $request->kelurahan;
+        $profilSekolah->provinsi = $request->selectedProvince;
+        $profilSekolah->kota = $request->selectedCity;
+        $profilSekolah->kecamatan = $request->selectedDistrict;
+        $profilSekolah->kelurahan = $request->selectedVillage;
         $profilSekolah->kodepos = $request->kodepos;
         $profilSekolah->telp = $request->telp;
         $profilSekolah->email = $request->email;
