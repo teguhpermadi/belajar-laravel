@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Alamat;
 
 use Livewire\Component;
 
@@ -27,6 +27,6 @@ class ShowAlamat extends Component
     }
     public function render()
     {
-        return view('livewire.show-alamat');
+        return view('livewire.alamat.show-alamat');
     }
 }

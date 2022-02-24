@@ -17,7 +17,7 @@
                     <x-adminlte-input name="npsn" label="NPSN" placeholder="npsn" value="{{ $sekolah->npsn }}" />
                     <x-adminlte-input name="alamat" label="alamat" placeholder="alamat" value="{{ $sekolah->alamat }}" />
                     
-                    @livewire('edit-alamat', ['selectedVillage' => $sekolah->kelurahan])
+                    @livewire('alamat.edit-alamat', ['selectedVillage' => $sekolah->kelurahan])
 
                     <x-adminlte-input name="kodepos" label="kodepos" placeholder="kodepos"
                         value="{{ $sekolah->kodepos }}" />

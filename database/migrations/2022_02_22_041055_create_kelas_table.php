@@ -34,7 +34,7 @@ class CreateKelasTable extends Migration
                     $table->enum('level', $level);
                     break;
             }
-            $table->enum('aktif', ['1', '0']);
+            $table->enum('aktif', ['1', '0'])->default('1');
             $table->timestamps();
         });
     }

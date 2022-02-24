@@ -252,6 +252,11 @@ return [
             'icon'        => 'fas fa-school',
         ],
         [
+            'text'        => 'Kelas',
+            'url'         => 'kelas',
+            'icon'        => 'fas fa-users',
+        ],
+        [
             'text'        => 'pages',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',

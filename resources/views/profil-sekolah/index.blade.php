@@ -18,7 +18,7 @@
                 <dt class="col-sm-4">alamat</dt>
                 <dd class="col-sm-8">{{ $sekolah->alamat }}</dd>
             </dl>
-            @livewire('show-alamat', ['village' => $sekolah->kelurahan])
+            @livewire('alamat.show-alamat', ['village' => $sekolah->kelurahan])
             <dl class="row">
                 <dt class="col-sm-4">kodepos</dt>
                 <dd class="col-sm-8">{{ $sekolah->kodepos }}</dd>
