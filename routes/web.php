@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\PpdbController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfilSekolahController;
 use Illuminate\Support\Facades\Route;
@@ -45,3 +46,6 @@ Route::post('sekolah/update/{id}', [ProfilSekolahController::class, 'update'])->
 
 // kelas
 Route::get('kelas', [KelasController::class, 'index'])->name('kelas.index');
+
+Route::get('ppdb', [PpdbController::class, 'index'])->name('ppdb.index');
+Route::get('ppdb/form', [PpdbController::class, 'create'])->name('ppdb.create');
