@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'username',
+        'phone',
     ];
 
     /**
@@ -60,5 +61,15 @@ class User extends Authenticatable
     {
         // return 'profile/username';
         return 'profile';
+    }
+
+    public function siswa()
+    {
+        return $this->hasOne(Siswa::class);
+    }
+
+    public function guru()
+    {
+        return $this->hasOne(Guru::class);
     }
 }

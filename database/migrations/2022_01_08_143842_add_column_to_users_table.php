@@ -16,10 +16,7 @@ class AddColumnToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('username')->unique()->after('email');
             $table->string('avatar')->nullable();
-            $table->string('tempatlahir')->nullable();
-            $table->date('tanggallahir')->nullable();
-            $table->enum('jeniskelamin', ['laki-laki', 'perempuan'])->nullable();
-            $table->string('alamat')->nullable();
+            $table->string('phone')->nullable();
         });
     }
 
