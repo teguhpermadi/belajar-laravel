@@ -34,22 +34,16 @@ class Guru extends Model
     public function kota()
     {
         return $this->belongsTo(City::class);
+
     }
     public function kecamatan()
     {
         return $this->belongsTo(District::class);
+
     }
     public function kelurahan()
     {
         return $this->belongsTo(Village::class);
-    }
-    public function alamat()
-    {
-        return [
-            'provinsi' => $this->belongsTo(Province::class),
-            'kota' => $this->belongsTo(City::class),
-            'kecamatan' => $this->belongsTo(District::class),
-            'kelurahan' => $this->belongsTo(Village::class),
-        ];
+
     }
 }
