@@ -252,6 +252,11 @@ return [
             'icon'        => 'fas fa-school',
         ],
         [
+            'text'        => 'PPDB',
+            'url'         => 'ppdb',
+            'icon'        => 'fas fa-user-plus',
+        ],
+        [
             'text'        => 'Kelas',
             'url'         => 'kelas',
             'icon'        => 'fas fa-users',
