@@ -49,8 +49,8 @@ class SiswaController extends Controller
      */
     public function show($id)
     {
-        $data = Siswa::with('user', 'provinsi', 'kota','kecamatan', 'kelurahan')->find($id);
-        // return $data;
+        $data = Siswa::with('user', 'provinsi', 'kota','kecamatan', 'kelurahan')->where('user_id',$id)->first();
+        // dd ($data);
         return view('siswa.show', ['siswa' => $data]);
     }
 
