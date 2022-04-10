@@ -49,7 +49,7 @@ class SiswaController extends Controller
      */
     public function show($id)
     {
-        $data = Siswa::find($id)->with('user', 'provinsi', 'kota','kecamatan', 'kelurahan')->first();
+        $data = Siswa::with('user', 'provinsi', 'kota','kecamatan', 'kelurahan')->find($id);
         // return $data;
         return view('siswa.show', ['siswa' => $data]);
     }
@@ -85,6 +85,7 @@ class SiswaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Siswa::findOrFail($id)->delete();
+        return redirect()->route('siswa.index');
     }
 }

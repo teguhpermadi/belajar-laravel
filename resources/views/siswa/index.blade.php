@@ -43,12 +43,17 @@
                             <button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Edit">
                                 <i class="fa fa-lg fa-fw fa-pen"></i>
                             </button>
-                            <button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete">
-                                <i class="fa fa-lg fa-fw fa-trash"></i>
-                            </button>
                             <a class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details" href="{{ route('siswa.show', $student->user_id) }}">
                                 <i class="fa fa-lg fa-fw fa-eye"></i>
                             </a>
+                            <form action="{{ route('siswa.destroy', $student->user_id) }}" method="POST">
+                                @method('delete')
+                                @csrf()
+                                <input type="hidden" name="id" value="{{ $student->user_id }}">
+                                <button type="submit" class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete">
+                                    <i class="fa fa-lg fa-fw fa-trash"></i>
+                                </button>
+                            </form>
                        </td>
                    </tr>
                    @endforeach
