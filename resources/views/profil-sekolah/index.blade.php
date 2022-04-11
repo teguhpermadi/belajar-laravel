@@ -27,10 +27,7 @@
                 <dt class="col-sm-4">website</dt>
                 <dd class="col-sm-8">{{ $sekolah->website }}</dd>
             </dl>
-            <form action="{{ route('sekolah.edit') }}" method="post">
-                @csrf
-                <x-adminlte-button type="submit" label="Edit" theme="warning" />
-            </form>
+            <a href="{{ route('sekolah.edit', $sekolah->id) }}" class="btn btn-warning">Edit</a>
         </x-adminlte-card>
     </div>
 </div>

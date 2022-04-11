@@ -14,7 +14,14 @@ class ProfilSekolahController extends Controller
      */
     public function index()
     {
-        return view('profil-sekolah.index', ['sekolah' => ProfilSekolah::first()]);
+        $data = ProfilSekolah::first();
+        // return $data;
+        if($data)
+        {
+            return view('profil-sekolah.index', ['sekolah' => $data]);
+        } else {
+            return redirect()->route('sekolah.create');
+        }
     }
 
     /**
@@ -24,7 +31,12 @@ class ProfilSekolahController extends Controller
      */
     public function create()
     {
-        //
+        $data = ProfilSekolah::first();
+        if(empty($data)){
+            return view('profil-sekolah.create');
+        } else {
+            return redirect()->route('sekolah.index');
+        }
     }
 
     /**
@@ -35,7 +47,39 @@ class ProfilSekolahController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'nama' => 'required|max:255',
+            // 'npsn' => 'numeric',
+            // 'alamat' => 'required',
+            // 'selectedProvince' => 'required',
+            // 'selectedCity' => 'required',
+            // 'selectedDistrict' => 'required',
+            // 'selectedVillage' => 'required',
+            // 'kodepos' => 'numeric|min:5|max:5',
+            // 'telp' => 'numeric',
+            // 'email' => 'email:rfc,dns',
+            // 'website' => 'url'
+        ]);
+
+        $sekolah = ProfilSekolah::create(
+            $request->all()
+        //     [
+        //     'nama' => $request->nama,
+        //     'npsn' => $request->npsn,
+        //     'alamat' => $request->alamat,
+        //     'provinsi' => $request->selectedProvince,
+        //     'kota' => $request->selectedCity,
+        //     'kecamatan' => $request->selectedDistrict,
+        //     'kelurahan' => $request->selectedVillage,
+        //     'kodepos' => $request->kodepos,
+        //     'telp' => $request->telp,
+        //     'email' => $request->email,
+        //     'website' => $request->website,
+        // ]
+    );
+
+        dd($sekolah);
+        return redirect()->route('sekolah.index');
     }
 
     /**

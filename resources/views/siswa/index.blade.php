@@ -31,12 +31,12 @@
                        <td>
                             @if ($student->user->avatar != null)
                             <img src="{{ asset('storage/uploads/avatars/' . $student->user->avatar) }}"
-                                class="user-image img-circle elevation-2 mr-3" alt="{{ $student->user->name }}" height="30">
+                                class="user-image img-circle elevation-2 mr-3" alt="{{ $student->user->fullname }}" height="30">
                             @else
-                            <img src="{{ Avatar::create($student->user->name)->toBase64() }}" class="user-image img-circle elevation-2 mr-3"
-                                alt="{{ $student->user->name }}" height="30">
+                            <img src="{{ Avatar::create($student->user->fullname)->toBase64() }}" class="user-image img-circle elevation-2 mr-3"
+                                alt="{{ $student->user->fullname }}" height="30">
                             @endif   
-                        {{ Str::upper($student->user->name )}}</td>
+                        {{ Str::upper($student->user->fullname )}}</td>
                        <td>{{ Str::ucfirst($student->jenis_kelamin) }}</td>
                        <td>{{ $student->user->phone }}</td>
                        <td>

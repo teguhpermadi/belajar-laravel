@@ -10,7 +10,8 @@
     <div class="row">
         <div class="col-12">
             <x-adminlte-card title="Data Sekolah">
-                <form action="{{ route('sekolah.update', ['id' => $sekolah->id]) }}" method="post">
+                <form action="{{ route('sekolah.update', $sekolah->id) }}" method="post">
+                    @method('put')
                     @csrf
                     <x-adminlte-input name="nama" label="Nama Sekolah" placeholder="nama sekolah"
                         value="{{ $sekolah->nama }}" />

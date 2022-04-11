@@ -13,11 +13,11 @@
             <table class="table table-striped">
                 <tr>
                     <td style="width:50%">Nama Lengkap</td>
-                    <td>{{ $siswa->user->name }}</td>
+                    <td>{{ $siswa->user->fullname }}</td>
                 </tr>
                 <tr>
                     <td>Nama Panggilan</td>
-                    <td>tes</td>
+                    <td>{{ $siswa->user->nickname }}</td>
                 </tr>
                 <tr>
                     <td>Jenis Kelamin</td>

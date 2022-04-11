@@ -42,9 +42,9 @@ Route::post('update_emailpassword', [UserController::class, 'update_emailpasswor
 Route::post('delete_avatar', [UserController::class, 'delete_avatar'])->name('delete_avatar');
 
 // profil sekolah
-Route::get('sekolah', [ProfilSekolahController::class, 'index'])->name('sekolah.index');
-Route::post('sekolah/edit', [ProfilSekolahController::class, 'edit'])->name('sekolah.edit');
-Route::post('sekolah/update/{id}', [ProfilSekolahController::class, 'update'])->name('sekolah.update');
+// Route::get('sekolah', [ProfilSekolahController::class, 'index'])->name('sekolah.index');
+// Route::post('sekolah/edit', [ProfilSekolahController::class, 'edit'])->name('sekolah.edit');
+// Route::post('sekolah/update/{id}', [ProfilSekolahController::class, 'update'])->name('sekolah.update');
 
 // kelas
 Route::get('kelas', [KelasController::class, 'index'])->name('kelas.index');
@@ -53,4 +53,5 @@ Route::get('/guru', function (Guru $id) {
     return Guru::with('user', 'provinsi', 'kota','kecamatan', 'kelurahan')->get();
 });
 
-Route::resource('/siswa', SiswaController::class);
+Route::resource('siswa', SiswaController::class);
+Route::resource('sekolah', ProfilSekolahController::class);

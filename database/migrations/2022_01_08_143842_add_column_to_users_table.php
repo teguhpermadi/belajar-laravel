@@ -17,6 +17,7 @@ class AddColumnToUsersTable extends Migration
             $table->string('username')->unique()->after('email');
             $table->string('avatar')->nullable();
             $table->string('phone')->nullable();
+            $table->enum('status', ['active', 'inactive'])->default('active');
         });
     }
 

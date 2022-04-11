@@ -24,7 +24,8 @@ class CreateSiswasTable extends Migration
             $table->string('nisn')->nullable()->comment('nomor induk siswa nasional');
             $table->string('asal_sekolah')->nullable();
             $table->string('alamat')->nullable();
-           
+            $table->string('kodepos')->nullable();
+            
             $table->unsignedBigInteger('provinsi_id')->nullable();
             $table->foreign('provinsi_id')->references('id')->on(config('laravolt.indonesia.table_prefix') . 'provinces');
             $table->unsignedBigInteger('kota_id')->nullable();

@@ -18,10 +18,16 @@ class CreateProfilSekolahsTable extends Migration
             $table->string('nama');
             $table->string('npsn')->nullable();
             $table->string('alamat')->nullable();
-            $table->string('provinsi')->nullable();
-            $table->string('kota')->nullable();
-            $table->string('kecamatan')->nullable();
-            $table->string('kelurahan')->nullable();
+
+            $table->unsignedBigInteger('provinsi_id')->nullable();
+            $table->foreign('provinsi_id')->references('id')->on(config('laravolt.indonesia.table_prefix') . 'provinces');
+            $table->unsignedBigInteger('kota_id')->nullable();
+            $table->foreign('kota_id')->references('id')->on(config('laravolt.indonesia.table_prefix') . 'cities');
+            $table->unsignedBigInteger('kecamatan_id')->nullable();
+            $table->foreign('kecamatan_id')->references('id')->on(config('laravolt.indonesia.table_prefix') . 'districts');
+            $table->unsignedBigInteger('kelurahan_id')->nullable();
+            $table->foreign('kelurahan_id')->references('id')->on(config('laravolt.indonesia.table_prefix') . 'villages');
+
             $table->string('kodepos')->nullable();
             $table->string('telp')->nullable();
             $table->string('email')->nullable();
