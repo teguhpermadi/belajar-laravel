@@ -78,7 +78,7 @@ class ProfilSekolahController extends Controller
         // ]
     );
 
-        dd($sekolah);
+        // dd($sekolah);
         return redirect()->route('sekolah.index');
     }
 

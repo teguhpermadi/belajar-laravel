@@ -14,7 +14,8 @@ class CreateProfilSekolahsTable extends Migration
     public function up()
     {
         Schema::create('profil_sekolahs', function (Blueprint $table) {
-            $table->id();
+            // $table->id();
+            $table->uuid('id')->primary();
             $table->string('nama');
             $table->string('npsn')->nullable();
             $table->string('alamat')->nullable();

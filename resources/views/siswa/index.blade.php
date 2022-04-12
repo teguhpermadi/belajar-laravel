@@ -3,7 +3,7 @@
 @section('title', 'Profil Sekolah')
 
 @section('content_header')
-<h1>Data Siswa</h1>
+{{ Breadcrumbs::render('siswa') }}
 @stop
 
     @section('content')

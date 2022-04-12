@@ -48,10 +48,5 @@ Route::post('delete_avatar', [UserController::class, 'delete_avatar'])->name('de
 
 // kelas
 Route::get('kelas', [KelasController::class, 'index'])->name('kelas.index');
-
-Route::get('/guru', function (Guru $id) {
-    return Guru::with('user', 'provinsi', 'kota','kecamatan', 'kelurahan')->get();
-});
-
 Route::resource('siswa', SiswaController::class);
 Route::resource('sekolah', ProfilSekolahController::class);
