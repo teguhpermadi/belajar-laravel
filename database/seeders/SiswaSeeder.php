@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\Siswa;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class SiswaSeeder extends Seeder
 {
@@ -15,6 +17,9 @@ class SiswaSeeder extends Seeder
      */
     public function run()
     {
-        Siswa::factory()->count(3)->create();
+        $students = Siswa::factory()->count(3)->create();
+        // foreach ($students as $student) {
+        //     $student->assignRole('active','siswa');
+        // }
     }
 }

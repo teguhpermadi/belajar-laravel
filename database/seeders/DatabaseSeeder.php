@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call([
             // ProfilSekolahSeeder::class,
+            RolesAndPermissionsSeeder::class,
             ProvincesSeeder::class,
             CitiesSeeder::class,
             DistrictsSeeder::class,

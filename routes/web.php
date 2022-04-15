@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GuruController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfilSekolahController;
@@ -35,18 +36,17 @@ Route::get('/home', function() {
 })->name('home')->middleware('auth');
 
 // profil user
-Route::get('profile', [UserController::class, 'profile'])->name('profile');
-Route::post('update_avatar', [UserController::class, 'update_avatar'])->name('update_avatar');
-Route::post('update_profile', [UserController::class, 'update_profile'])->name('update_profile');
-Route::post('update_emailpassword', [UserController::class, 'update_emailpassword'])->name('update_emailpassword');
-Route::post('delete_avatar', [UserController::class, 'delete_avatar'])->name('delete_avatar');
+Route::resource('kelas', KelasController::class);
+Route::group(['middleware' => ['role:active']], function () {
+    Route::resource('siswa', SiswaController::class);
+    Route::resource('sekolah', ProfilSekolahController::class);
+});
+Route::resource('guru', GuruController::class);
 
-// profil sekolah
-// Route::get('sekolah', [ProfilSekolahController::class, 'index'])->name('sekolah.index');
-// Route::post('sekolah/edit', [ProfilSekolahController::class, 'edit'])->name('sekolah.edit');
-// Route::post('sekolah/update/{id}', [ProfilSekolahController::class, 'update'])->name('sekolah.update');
-
-// kelas
-Route::get('kelas', [KelasController::class, 'index'])->name('kelas.index');
-Route::resource('siswa', SiswaController::class);
-Route::resource('sekolah', ProfilSekolahController::class);
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('profile', [UserController::class, 'profile'])->name('profile');
+    Route::post('update_avatar', [UserController::class, 'update_avatar'])->name('update_avatar');
+    Route::post('update_profile', [UserController::class, 'update_profile'])->name('update_profile');
+    Route::post('update_emailpassword', [UserController::class, 'update_emailpassword'])->name('update_emailpassword');
+    Route::post('delete_avatar', [UserController::class, 'delete_avatar'])->name('delete_avatar');
+});

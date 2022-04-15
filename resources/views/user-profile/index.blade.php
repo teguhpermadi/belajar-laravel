@@ -19,7 +19,7 @@
 
                     @else
 
-                        <img src=" {{ Avatar::create(Auth::user()->name)->toBase64() }}"
+                        <img src=" {{ Avatar::create(Auth::user()->fullname)->toBase64() }}"
                             style="width:150px; height:150px; float:left; border-radius:50%; margin-right:25px;">
 
                     @endif

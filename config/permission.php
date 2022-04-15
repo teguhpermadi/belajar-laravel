@@ -86,7 +86,8 @@ return [
          * that case, name this `model_uuid`.
          */
 
-        'model_morph_key' => 'model_id',
+        'model_morph_key' => 'model_uuid',
+        // 'model_morph_key' => 'model_id',
 
         /*
          * Change this if you want to use the teams feature and your related model's
@@ -111,7 +112,7 @@ return [
      * 'model_has_permissions'(view the latest version of package's migration file)
      */
 
-    'teams' => true,
+    'teams' => false,
 
     /*
      * When set to true, the required permission names are added to the exception

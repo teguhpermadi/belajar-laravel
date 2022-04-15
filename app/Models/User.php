@@ -9,21 +9,25 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Storage;
 use App\Traits\Uuid;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, Uuid;
+    use HasApiTokens, HasFactory, Notifiable, Uuid, HasRoles;
 
     public $incrementing = false;
 
     protected $keyType = 'uuid';
+
+    protected $guard_name = 'web';
     /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
     protected $fillable = [
-        'name',
+        'fullname',
+        'nickname',
         'email',
         'password',
         'username',

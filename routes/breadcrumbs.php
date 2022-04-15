@@ -49,3 +49,15 @@ Breadcrumbs::for('show siswa', function (BreadcrumbTrail $trail, $data) {
     $trail->parent('siswa', route('siswa.index'));
     $trail->push($data->fullname);
 });
+
+// Beranda > Data > Siswa
+Breadcrumbs::for('guru', function (BreadcrumbTrail $trail) {
+    $trail->parent('data');
+    $trail->push('Guru', route('guru.index'));
+});
+
+// Beranda > Data > Guru > [nama siswa]
+Breadcrumbs::for('show guru', function (BreadcrumbTrail $trail, $data) {
+    $trail->parent('guru', route('guru.index'));
+    $trail->push($data->fullname);
+});

@@ -22,8 +22,10 @@ class SiswaFactory extends Factory
 
     public function definition()
     {
+        $user = User::factory()->create();
+        $user->assignRole('active', 'siswa');
         return [
-            'user_id' => User::factory()->create()->id,
+            'user_id' => $user->id,
             'tempat_lahir' => $this->faker->city(),
             'tanggal_lahir' => $this->faker->date(),
             'jenis_kelamin' => $this->faker->randomElement($array = array('laki-laki', 'perempuan')),

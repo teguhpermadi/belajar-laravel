@@ -8,10 +8,14 @@ use Laravolt\Indonesia\Models\City;
 use Laravolt\Indonesia\Models\District;
 use Laravolt\Indonesia\Models\Province;
 use Laravolt\Indonesia\Models\Village;
+use Spatie\Permission\Traits\HasRoles;
 
 class Siswa extends Model
 {
-    use HasFactory;
+    use HasFactory, HasRoles;
+
+    protected $guard_name = 'web';
+    
     protected $fillable = [
         'tempat_lahir',
         'tanggal_lahir',
