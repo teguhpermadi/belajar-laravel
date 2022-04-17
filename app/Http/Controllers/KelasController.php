@@ -46,7 +46,8 @@ class KelasController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Kelas::find($id);
+        dd($data);
     }
 
     /**

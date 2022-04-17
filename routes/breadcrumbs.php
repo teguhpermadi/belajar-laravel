@@ -61,3 +61,9 @@ Breadcrumbs::for('show guru', function (BreadcrumbTrail $trail, $data) {
     $trail->parent('guru', route('guru.index'));
     $trail->push($data->fullname);
 });
+
+// Beranda > Kelas
+Breadcrumbs::for('kelas', function (BreadcrumbTrail $trail) {
+    $trail->parent('beranda');
+    $trail->push('Kelas');
+});
