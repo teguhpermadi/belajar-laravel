@@ -14,9 +14,8 @@ class CreateGurusTable extends Migration
     public function up()
     {
         Schema::create('gurus', function (Blueprint $table) {
-            $table->id();
-            // $table->foreignId('user_id')->constrained();
-            $table->uuid('user_id')->nullable(false);
+            $table->uuid('id')->primary();
+            $table->foreignUuid('user_id')->constrained();
             $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->enum('jenis_kelamin', ['laki-laki', 'perempuan'])->nullable();
@@ -35,6 +34,7 @@ class CreateGurusTable extends Migration
             $table->unsignedBigInteger('kelurahan_id')->nullable();
             $table->foreign('kelurahan_id')->references('id')->on(config('laravolt.indonesia.table_prefix') . 'villages');
 
+            $table->string('ttd')->nullable();
             $table->timestamps();
         });
     }

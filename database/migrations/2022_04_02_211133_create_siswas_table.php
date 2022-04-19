@@ -14,9 +14,8 @@ class CreateSiswasTable extends Migration
     public function up()
     {
         Schema::create('siswas', function (Blueprint $table) {
-            $table->id();
-            // $table->foreignId('user_id')->constrained();
-            $table->uuid('user_id')->nullable(false);
+            $table->uuid('id')->primary();
+            $table->foreignUuid('user_id')->constrained();
             $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->enum('jenis_kelamin', ['laki-laki', 'perempuan'])->nullable();

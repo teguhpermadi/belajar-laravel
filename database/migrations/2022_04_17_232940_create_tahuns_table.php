@@ -14,7 +14,12 @@ class CreateTahunsTable extends Migration
     public function up()
     {
         Schema::create('tahuns', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->year('tahun');
+            $table->enum('semester', ['ganjil', 'genap']);
+            $table->date('tanggal_awal')->nullable();
+            $table->date('tanggal_akhir')->nullable();
+            $table->foreignUuid('kepala_sekolah')->references('id')->on('gurus');
             $table->timestamps();
         });
     }

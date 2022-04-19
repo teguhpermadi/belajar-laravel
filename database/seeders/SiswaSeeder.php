@@ -17,7 +17,7 @@ class SiswaSeeder extends Seeder
      */
     public function run()
     {
-        $students = Siswa::factory()->count(3)->create();
+        $students = Siswa::factory()->count(5)->create();
         // foreach ($students as $student) {
         //     $student->assignRole('active','siswa');
         // }

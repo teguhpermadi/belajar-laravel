@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Tahun;
 use Illuminate\Database\Seeder;
 
 class TahunSeeder extends Seeder
@@ -13,6 +14,6 @@ class TahunSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Tahun::factory()->count(3)->create();
     }
 }

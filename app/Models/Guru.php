@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravolt\Indonesia\Models\City;
@@ -12,7 +13,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class Guru extends Model
 {
-    use HasFactory, HasRoles;
+    use HasFactory, HasRoles, Uuid;
     
     protected $guard_name = 'web';
     
@@ -24,6 +25,7 @@ class Guru extends Model
         'nip',
         'niy',
         'status_pegawai',
+        'ttd',
     ];
 
     public function user()

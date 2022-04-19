@@ -38,9 +38,9 @@ Route::get('/home', function() {
 // profil user
 Route::resource('kelas', KelasController::class);
 Route::group(['middleware' => ['role:active']], function () {
-    Route::resource('siswa', SiswaController::class);
-    Route::resource('sekolah', ProfilSekolahController::class);
 });
+Route::resource('siswa', SiswaController::class);
+Route::resource('sekolah', ProfilSekolahController::class);
 Route::resource('guru', GuruController::class);
 
 Route::group(['middleware' => ['auth']], function () {
