@@ -9,6 +9,11 @@ use Illuminate\Database\Eloquent\Model;
 class Kelas extends Model
 {
     use HasFactory, Uuid;
+
+    public $incrementing = false;
+
+    protected $keyType = 'uuid';
+    
     protected $fillable = [
         'nama',
         'level',

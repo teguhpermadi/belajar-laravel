@@ -9,6 +9,11 @@ use Illuminate\Database\Eloquent\Model;
 class Tahun extends Model
 {
     use HasFactory, Uuid;
+
+    public $incrementing = false;
+
+    protected $keyType = 'uuid';
+
     
     protected $fillable = [
         'tahun',
@@ -20,6 +25,11 @@ class Tahun extends Model
 
     public function guru()
     {
-        return $this->belongsTo(Guru::class);
+        return $this->belongsTo(Guru::class, 'kepala_sekolah');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

@@ -47,7 +47,7 @@ class GuruController extends Controller
      */
     public function show($id)
     {
-        $data = Guru::with('user', 'provinsi', 'kota','kecamatan', 'kelurahan')->where('user_id',$id)->first();
+        $data = Guru::with('user', 'provinsi', 'kota','kecamatan', 'kelurahan')->where('user_id',$id)->firstOrFail();
         // dd ($data);
         return view('guru.show', ['guru' => $data]);
     }

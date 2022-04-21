@@ -5,7 +5,9 @@ use App\Http\Controllers\KelasController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfilSekolahController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\TahunController;
 use App\Models\Guru;
+use App\Models\Siswa;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -36,12 +38,14 @@ Route::get('/home', function() {
 })->name('home')->middleware('auth');
 
 // profil user
-Route::resource('kelas', KelasController::class);
 Route::group(['middleware' => ['role:active']], function () {
 });
+
+Route::resource('kelas', KelasController::class);
 Route::resource('siswa', SiswaController::class);
 Route::resource('sekolah', ProfilSekolahController::class);
 Route::resource('guru', GuruController::class);
+Route::resource('tahun', TahunController::class);
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('profile', [UserController::class, 'profile'])->name('profile');
@@ -49,4 +53,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('update_profile', [UserController::class, 'update_profile'])->name('update_profile');
     Route::post('update_emailpassword', [UserController::class, 'update_emailpassword'])->name('update_emailpassword');
     Route::post('delete_avatar', [UserController::class, 'delete_avatar'])->name('delete_avatar');
+});
+
+Route::get('tes', function(){
+    return Guru::with('kepala_sekolah')->get();
 });

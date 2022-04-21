@@ -257,9 +257,24 @@ return [
             'icon'        => 'fas fa-user-plus',
         ],
         [
+            'text'        => 'Tahun',
+            'url'         => 'tahun',
+            'icon'        => 'fas fa-circle',
+        ],
+        [
+            'text'        => 'Guru',
+            'url'         => 'guru',
+            'icon'        => 'fas fa-circle',
+        ],
+        [
+            'text'        => 'Siswa',
+            'url'         => 'siswa',
+            'icon'        => 'fas fa-circle',
+        ],
+        [
             'text'        => 'Kelas',
             'url'         => 'kelas',
-            'icon'        => 'fas fa-users',
+            'icon'        => 'fas fa-circle',
         ],
         [
             'text'        => 'pages',

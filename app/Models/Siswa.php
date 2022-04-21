@@ -15,7 +15,16 @@ class Siswa extends Model
 {
     use HasFactory, HasRoles, Uuid;
 
+    public $incrementing = false;
+
+    protected $keyType = 'uuid';
+
     protected $guard_name = 'web';
+
+    // protected $cast = [
+    //     'created_at' => 'datetime',
+    //     'updated_at' => 'datetime',
+    // ];
     
     protected $fillable = [
         'tempat_lahir',

@@ -15,6 +15,10 @@ class Guru extends Model
 {
     use HasFactory, HasRoles, Uuid;
     
+    public $incrementing = false;
+
+    protected $keyType = 'uuid';
+
     protected $guard_name = 'web';
     
     protected $fillable = [
@@ -50,6 +54,10 @@ class Guru extends Model
     public function kelurahan()
     {
         return $this->belongsTo(Village::class);
+    }
 
+    public function kepala_sekolah()
+    {
+        return $this->hasMany(Tahun::class, 'kepala_sekolah');
     }
 }

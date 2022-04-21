@@ -67,3 +67,9 @@ Breadcrumbs::for('kelas', function (BreadcrumbTrail $trail) {
     $trail->parent('beranda');
     $trail->push('Kelas');
 });
+
+// Beranda > Tahun 
+Breadcrumbs::for('tahun', function (BreadcrumbTrail $trail) {
+    $trail->parent('beranda');
+    $trail->push('Tahun');
+});

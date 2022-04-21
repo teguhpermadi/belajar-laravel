@@ -19,7 +19,10 @@ class CreateTahunsTable extends Migration
             $table->enum('semester', ['ganjil', 'genap']);
             $table->date('tanggal_awal')->nullable();
             $table->date('tanggal_akhir')->nullable();
-            $table->foreignUuid('kepala_sekolah')->references('id')->on('gurus');
+            // $table->foreignUuid('guru_id')->constrained();
+            $table->uuid('kepala_sekolah');
+            $table->foreign('kepala_sekolah')->references('id')->on('gurus');
+
             $table->timestamps();
         });
     }

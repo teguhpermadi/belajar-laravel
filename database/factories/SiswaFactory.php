@@ -22,10 +22,10 @@ class SiswaFactory extends Factory
 
     public function definition()
     {
-        $user = User::factory()->create();
-        $user->assignRole('active', 'siswa');
+        // $user = User::factory()->create();
+        // $user->assignRole('active', 'siswa');
         return [
-            'user_id' => $user->id,
+            // 'user_id' => $user->id,
             'tempat_lahir' => $this->faker->city(),
             'tanggal_lahir' => $this->faker->date(),
             'jenis_kelamin' => $this->faker->randomElement($array = array('laki-laki', 'perempuan')),
@@ -48,6 +48,9 @@ class SiswaFactory extends Factory
             'nama_wali' => $this->faker->name($gender = 'male' | 'female'),
             'pekerjaan_wali' => $this->faker->jobTitle(),
             'penghasilan_wali' => $this->faker->randomNumber($nbDigits = NULL, $strict = false),
+
+            // 'created_at' => now()->toDateTimeString(),
+            // 'updated_at' => now()->toDateTimeString(),
         ];
     }
 }
