@@ -16,6 +16,18 @@ class Kelas extends Model
     
     protected $fillable = [
         'nama',
+        'tahun_id',
+        'walikelas_id',
         'level',
     ];
+
+    public function guru()
+    {
+        return $this->belongsTo(Guru::class, 'walikelas_id');
+    }
+
+    public function tahun()
+    {
+        return $this->belongsTo(Tahun::class);
+    }
 }

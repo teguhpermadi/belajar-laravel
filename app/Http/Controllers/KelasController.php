@@ -14,7 +14,8 @@ class KelasController extends Controller
      */
     public function index()
     {
-        return view('kelas.index', ['kelas' => Kelas::all()]);
+        $kelas = Kelas::with('tahun', 'guru.user')->where('tahun_id','aa869b9a-db80-4b75-8354-e0e99fd3c9d0')->get();
+        return view('kelas.index', ['kelas' => $kelas]);
     }
 
     /**

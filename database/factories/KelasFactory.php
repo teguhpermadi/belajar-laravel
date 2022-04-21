@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Guru;
 use App\Models\Kelas;
+use App\Models\Tahun;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class KelasFactory extends Factory
@@ -38,8 +40,9 @@ class KelasFactory extends Factory
 
         return [
             'nama' => $this->faker->bothify('kelas ##??'),
+            'tahun_id' => Tahun::all()->random(),
+            'walikelas_id' => Guru::all()->random(),
             'level' => $this->faker->randomElement($level),
-            'aktif' => $this->faker->randomElement(['1', '0']),
         ];
     }
 }

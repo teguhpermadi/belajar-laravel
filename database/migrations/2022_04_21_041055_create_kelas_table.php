@@ -15,7 +15,9 @@ class CreateKelasTable extends Migration
     {
         Schema::create('kelas', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            // $table->id();
+            $table->foreignUuid('tahun_id')->constrained();
+            $table->uuid('walikelas_id');
+            $table->foreign('walikelas_id')->references('id')->on('gurus');
             $table->string('nama');
             switch (env('JENJANG_SEKOLAH')) {
                 case 'sma':
@@ -35,7 +37,6 @@ class CreateKelasTable extends Migration
                     $table->enum('level', $level);
                     break;
             }
-            $table->enum('aktif', ['1', '0'])->default('1');
             $table->timestamps();
         });
     }
