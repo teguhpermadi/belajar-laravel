@@ -86,6 +86,12 @@
             @enderror
         </div>
 
+        <div class="row">
+            <div class="col-12 mb-3">
+                @livewire('ubah-tahun-ajaran')
+            </div>
+        </div>
+
         {{-- Login field --}}
         <div class="row">
             <div class="col-7">

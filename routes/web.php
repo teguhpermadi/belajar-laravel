@@ -6,9 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfilSekolahController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\TahunController;
-use App\Models\Guru;
-use App\Models\Siswa;
-use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,6 +53,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('delete_avatar', [UserController::class, 'delete_avatar'])->name('delete_avatar');
 });
 
-Route::get('tes', function(){
-    return Guru::with('kepala_sekolah')->get();
+Route::get('tes', function(Request $request){
+    $value = session()->all();
+    dd($value);
 });

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\Tahun;
 use Illuminate\Http\Request;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class KelasController extends Controller
 {
@@ -14,10 +16,11 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $kelas = Kelas::with('tahun', 'guru.user')->where('tahun_id','aa869b9a-db80-4b75-8354-e0e99fd3c9d0')->get();
-        return view('kelas.index', ['kelas' => $kelas]);
+        $tahun_id = session()->get('tahun_id');
+        $kelas = Kelas::with('tahun', 'guru.user')->where('tahun_id', $tahun_id)->get();
+        return view('kelas.index', ['kelas' => $kelas, 'tahun_id' => $tahun_id]);
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -25,7 +28,7 @@ class KelasController extends Controller
      */
     public function create()
     {
-        //
+        return 'create';
     }
 
     /**
@@ -36,7 +39,7 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -47,8 +50,8 @@ class KelasController extends Controller
      */
     public function show($id)
     {
-        $data = Kelas::find($id);
-        dd($data);
+        $data = Kelas::findOrFail($id);
+        return $data;
     }
 
     /**
@@ -82,6 +85,6 @@ class KelasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $id;
     }
 }
