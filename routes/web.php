@@ -36,14 +36,14 @@ Route::get('/home', function() {
 })->name('home')->middleware('auth');
 
 // profil user
-Route::group(['middleware' => ['role:active']], function () {
+Route::group(['middleware' => ['auth', 'role:active']], function () {
+    Route::resource('kelas', KelasController::class);
+    Route::resource('siswa', SiswaController::class);
+    Route::resource('guru', GuruController::class);
+    Route::resource('tahun', TahunController::class);
+    Route::resource('sekolah', ProfilSekolahController::class);
 });
 
-Route::resource('kelas', KelasController::class);
-Route::resource('siswa', SiswaController::class);
-Route::resource('sekolah', ProfilSekolahController::class);
-Route::resource('guru', GuruController::class);
-Route::resource('tahun', TahunController::class);
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('profile', [UserController::class, 'profile'])->name('profile');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tahun;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $tahun = Tahun::all()->first()->id;
+        dd($tahun);
+        $tahun_id = session()->put('tahun_id', $tahun->id);
+        // return view('home');
     }
 }
