@@ -18,7 +18,7 @@ class TahunFactory extends Factory
             'tahun' => $this->faker->year($max = 'now'),
             'semester' => $this->faker->randomElement(['ganjil', 'genap']),
             'tanggal_awal' => $this->faker->date(),
-            'kepala_sekolah' => Guru::all()->random()->id,
+            // 'kepala_sekolah' => Guru::all()->random()->id,
         ];
     }
 }

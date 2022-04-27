@@ -26,12 +26,9 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'fullname',
-        'nickname',
+        'username',
         'email',
         'password',
-        'username',
-        'phone',
     ];
 
     /**
@@ -56,7 +53,7 @@ class User extends Authenticatable
     public function adminlte_image()
     {
         // return 'https://picsum.photos/300/300';
-        $url = Storage::url('uploads/avatars/'.$this->avatar);
+        $url = Storage::url('uploads/avatars/' . $this->avatar);
         return $url;
     }
 
@@ -71,13 +68,23 @@ class User extends Authenticatable
         return 'profile';
     }
 
-    public function siswa()
+    public function identitasUser()
     {
-        return $this->hasOne(Siswa::class);
+        return $this->hasOne(IdentitasUser::class);
     }
 
-    public function guru()
+    public function AlamatUser()
     {
-        return $this->hasOne(Guru::class);
+        return $this->hasOne(AlamatUser::class);
+    }
+
+    public function NomorIdentitasUser()
+    {
+        return $this->hasOne(NomorIdentitasUser::class);
+    }
+
+    public function OrangtuaUser()
+    {
+        return $this->hasOne(OrangTuaUser::class);
     }
 }

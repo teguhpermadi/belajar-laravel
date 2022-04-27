@@ -26,9 +26,7 @@ class GuruFactory extends Factory
             'tempat_lahir' => $this->faker->city(),
             'tanggal_lahir' => $this->faker->date(),
             'jenis_kelamin' => $this->faker->randomElement($array = array('laki-laki', 'perempuan')),
-            'nik' => $this->faker->randomNumber($nbDigits = NULL, $strict = false),
-            'nip' => $this->faker->randomNumber($nbDigits = NULL, $strict = false),
-            'niy' => $this->faker->randomNumber($nbDigits = NULL, $strict = false),
+            
             'status_pegawai' => $this->faker->randomElement(['pns', 'gty', 'gtt']),
             'alamat' => $this->faker->address(),
             'provinsi_id' => Province::all()->random()->id,

@@ -16,8 +16,7 @@ class CreateKelasTable extends Migration
         Schema::create('kelas', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('tahun_id')->constrained();
-            $table->uuid('walikelas_id');
-            $table->foreign('walikelas_id')->references('id')->on('gurus');
+            $table->foreignUuid('user_id')->constrained();
             $table->string('nama');
             switch (env('JENJANG_SEKOLAH')) {
                 case 'sma':

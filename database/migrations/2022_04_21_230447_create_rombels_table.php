@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('rombels', function (Blueprint $table) {
             $table->id();
             $table->foreignUuid('kelas_id')->constrained();
-            $table->foreignUuid('siswa_id')->constrained();
+            $table->foreignUuid('user_id')->constrained();
             $table->timestamps();
         });
     }
