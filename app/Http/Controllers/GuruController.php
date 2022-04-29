@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Guru;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class GuruController extends Controller
@@ -14,7 +14,8 @@ class GuruController extends Controller
      */
     public function index()
     {
-        $data = Guru::with('user')->get();
+        $data = User::role(['active', 'guru'])->with('identitas')->get();
+        // return($data);
         return view('guru.index', ['teachers' => $data]);
     }
 
@@ -47,8 +48,8 @@ class GuruController extends Controller
      */
     public function show($id)
     {
-        $data = Guru::with('user', 'provinsi', 'kota','kecamatan', 'kelurahan')->where('user_id',$id)->firstOrFail();
-        // dd ($data);
+        $data = User::with('identitas', 'alamat.provinsi', 'alamat.kota', 'alamat.kecamatan', 'alamat.kelurahan')->where('id', $id)->firstOrFail();
+        return ($data);
         return view('guru.show', ['guru' => $data]);
     }
 

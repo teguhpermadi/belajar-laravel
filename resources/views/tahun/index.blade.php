@@ -7,10 +7,10 @@
 @stop
 
     @section('content')
+    
     <div class="row">
         <div class="col-12">
             <x-adminlte-card title="Data Tahun Pelajaran">
-                {{-- Setup data for datatables --}}
                 @php
                     $heads = [
                     'Tahun',
@@ -34,7 +34,7 @@
                        <td>{{ $tahun->semester }}</td>
                        <td>{{ $tahun->tanggal_awal }}</td>
                        <td>{{ $tahun->tanggal_akhir }}</td>
-                       <td>{{ $tahun->guru->user->fullname }}</td>
+                       <td>{{ $tahun->kepalasekolah->identitas->fullname }}</td>
                        <td>
                         <button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Edit">
                             <i class="fa fa-lg fa-fw fa-pen"></i>

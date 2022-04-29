@@ -4,6 +4,10 @@ namespace Database\Factories;
 
 use App\Models\AlamatUser;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Laravolt\Indonesia\Models\City;
+use Laravolt\Indonesia\Models\District;
+use Laravolt\Indonesia\Models\Province;
+use Laravolt\Indonesia\Models\Village;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\AlamatUser>

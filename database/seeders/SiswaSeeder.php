@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Siswa;
+use App\Models\AlamatUser;
+use App\Models\IdentitasUser;
+use App\Models\NomorIdentitasUser;
+use App\Models\OrangTuaUser;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
@@ -21,7 +24,12 @@ class SiswaSeeder extends Seeder
 
         for ($i=0; $i < 50; $i++) { 
             # code...
-            $user = User::factory()->hasSiswa()->create();
+            $user = User::factory()
+                ->has(IdentitasUser::factory())
+                ->has(AlamatUser::factory())
+                ->has(NomorIdentitasUser::factory())
+                ->has(OrangTuaUser::factory())
+                ->create();
             $user->assignRole('active', 'siswa');
         }
         

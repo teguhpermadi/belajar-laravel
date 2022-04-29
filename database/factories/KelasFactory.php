@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Guru;
 use App\Models\Kelas;
 use App\Models\Tahun;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class KelasFactory extends Factory
@@ -41,7 +42,7 @@ class KelasFactory extends Factory
         return [
             'nama' => $this->faker->bothify('kelas ##??'),
             'tahun_id' => Tahun::all()->random(),
-            'walikelas_id' => Guru::all()->random(),
+            'user_id' => User::role(['active', 'guru'])->get()->random()->id,
             'level' => $this->faker->randomElement($level),
         ];
     }

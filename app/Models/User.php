@@ -68,22 +68,22 @@ class User extends Authenticatable
         return 'profile';
     }
 
-    public function identitasUser()
+    public function identitas()
     {
         return $this->hasOne(IdentitasUser::class);
     }
 
-    public function AlamatUser()
+    public function Alamat()
     {
         return $this->hasOne(AlamatUser::class);
     }
 
-    public function NomorIdentitasUser()
+    public function NomorIdentitas()
     {
         return $this->hasOne(NomorIdentitasUser::class);
     }
 
-    public function OrangtuaUser()
+    public function Orangtua()
     {
         return $this->hasOne(OrangTuaUser::class);
     }

@@ -25,8 +25,9 @@ class DatabaseSeeder extends Seeder
             CitiesSeeder::class,
             DistrictsSeeder::class,
             VillagesSeeder::class,
-            // SiswaSeeder::class,
-            // GuruSeeder::class,
+            SiswaSeeder::class,
+            GuruSeeder::class,
+            // UserSeeder::class,
             TahunSeeder::class,
             KelasSeeder::class,
         ]);

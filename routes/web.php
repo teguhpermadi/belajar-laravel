@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfilSekolahController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\TahunController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,6 +55,5 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::get('tes', function(Request $request){
-    $value = session()->all();
-    dd($value);
+   return Auth::user()->load(['identitas'])->identitas->fullname;
 });

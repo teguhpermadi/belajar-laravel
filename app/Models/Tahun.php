@@ -23,14 +23,9 @@ class Tahun extends Model
         'kepala_sekolah',
     ];
 
-    public function guru()
+    public function kepalasekolah()
     {
-        return $this->belongsTo(Guru::class, 'kepala_sekolah');
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function kelas(){

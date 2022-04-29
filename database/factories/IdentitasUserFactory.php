@@ -20,7 +20,7 @@ class IdentitasUserFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::all()->random()->id,
+            // 'user_id' => User::all()->random()->id,
             'fullname' => $this->faker->name(),
             'nickname' => $this->faker->name(),
             'phone' => $this->faker->phoneNumber(),

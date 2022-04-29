@@ -25,8 +25,8 @@ class HomeController extends Controller
     public function index()
     {
         $tahun = Tahun::all()->first()->id;
-        dd($tahun);
+        // dd($tahun);
         $tahun_id = session()->put('tahun_id', $tahun->id);
-        // return view('home');
+        return view('home');
     }
 }

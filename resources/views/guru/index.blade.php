@@ -29,27 +29,27 @@
                    @foreach ($teachers as $teacher)
                    <tr>
                        <td>
-                            @if ($teacher->user->avatar != null)
-                            <img src="{{ asset('storage/uploads/avatars/' . $teacher->user->avatar) }}"
-                                class="user-image img-circle elevation-2 mr-3" alt="{{ $teacher->user->fullname }}" height="30">
+                            @if ($teacher->identitas->avatar != null)
+                            <img src="{{ asset('storage/uploads/avatars/' . $teacher->identitas->avatar) }}"
+                                class="identitas-image img-circle elevation-2 mr-3" alt="{{ $teacher->identitas->fullname }}" height="30">
                             @else
-                            <img src="{{ Avatar::create($teacher->user->fullname)->toBase64() }}" class="user-image img-circle elevation-2 mr-3"
-                                alt="{{ $teacher->user->fullname }}" height="30">
+                            <img src="{{ Avatar::create($teacher->identitas->fullname)->toBase64() }}" class="identitas-image img-circle elevation-2 mr-3"
+                                alt="{{ $teacher->identitas->fullname }}" height="30">
                             @endif   
-                        {{ Str::upper($teacher->user->fullname )}}</td>
+                        {{ Str::upper($teacher->identitas->fullname )}}</td>
                        <td>{{ Str::ucfirst($teacher->jenis_kelamin) }}</td>
-                       <td>{{ $teacher->user->phone }}</td>
+                       <td>{{ $teacher->identitas->phone }}</td>
                        <td>
                             <button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Edit">
                                 <i class="fa fa-lg fa-fw fa-pen"></i>
                             </button>
-                            <a class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details" href="{{ route('guru.show', $teacher->user_id) }}">
+                            <a class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details" href="{{ route('guru.show', $teacher->id) }}">
                                 <i class="fa fa-lg fa-fw fa-eye"></i>
                             </a>
-                            <form action="{{ route('guru.destroy', $teacher->user_id) }}" method="POST">
+                            <form action="{{ route('guru.destroy', $teacher->id) }}" method="POST">
                                 @method('delete')
                                 @csrf()
-                                <input type="hidden" name="id" value="{{ $teacher->user_id }}">
+                                <input type="hidden" name="id" value="{{ $teacher->id }}">
                                 <button type="submit" class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete">
                                     <i class="fa fa-lg fa-fw fa-trash"></i>
                                 </button>

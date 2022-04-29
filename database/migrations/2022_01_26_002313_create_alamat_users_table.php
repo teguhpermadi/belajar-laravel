@@ -26,8 +26,8 @@ return new class extends Migration
             $table->foreign('kecamatan_id')->references('id')->on(config('laravolt.indonesia.table_prefix') . 'districts');
             $table->unsignedBigInteger('kelurahan_id')->nullable();
             $table->foreign('kelurahan_id')->references('id')->on(config('laravolt.indonesia.table_prefix') . 'villages');
-            $table->decimal('long', 10, 8);
-            $table->decimal('lat', 10, 8);
+            $table->string('long');
+            $table->string('lat');
             $table->timestamps();
         });
     }

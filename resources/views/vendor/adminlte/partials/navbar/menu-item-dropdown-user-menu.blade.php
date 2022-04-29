@@ -18,16 +18,16 @@
     {{-- User menu toggler --}}
     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
         @if(config('adminlte.usermenu_image'))
-            @if (Auth::user()->avatar != null)
-            <img src="{{ asset('storage/uploads/avatars/' . Auth::user()->avatar) }}"
-                class="user-image img-circle elevation-2" alt="{{ Auth::user()->fullname }}">
+            @if (Auth::user()->load('identitas')->identitas->avatar != null)
+            <img src="{{ asset('storage/uploads/avatars/' . Auth::user()->load('identitas')->identitas->avatar) }}"
+                class="user-image img-circle elevation-2" alt="{{ Auth::user()->load('identitas')->identitas->fullname }}">
             @else
-            <img src="{{ Avatar::create(Auth::user()->fullname)->toBase64() }}" class="user-image img-circle elevation-2"
-                alt="{{ Auth::user()->fullname }}">
+            <img src="{{ Avatar::create(Auth::user()->load('identitas')->identitas->fullname)->toBase64() }}" class="user-image img-circle elevation-2"
+                alt="{{ Auth::user()->load('identitas')->identitas->fullname }}">
             @endif
         @endif
         <span @if(config('adminlte.usermenu_image')) class="d-none d-md-inline" @endif>
-            {{ Auth::user()->fullname }}
+            {{ Auth::user()->load('identitas')->identitas->fullname }}
         </span>
     </a>
 
@@ -39,16 +39,16 @@
         <li class="user-header {{ config('adminlte.usermenu_header_class', 'bg-primary') }}
                 @if(!config('adminlte.usermenu_image')) h-auto @endif">
             @if(config('adminlte.usermenu_image'))
-                @if (Auth::user()->avatar != null)
-                <img src="{{ asset('storage/uploads/avatars/' . Auth::user()->avatar) }}"
-                    class="user-image img-circle elevation-2" alt="{{ Auth::user()->fullname }}">
+                @if (Auth::user()->load('identitas')->identitas->avatar != null)
+                <img src="{{ asset('storage/uploads/avatars/' . Auth::user()->load('identitas')->identitas->avatar) }}"
+                    class="user-image img-circle elevation-2" alt="{{ Auth::user()->load('identitas')->identitas->fullname }}">
                 @else
-                <img src="{{ Avatar::create(Auth::user()->fullname)->toBase64() }}" class="user-image img-circle elevation-2"
-                    alt="{{ Auth::user()->fullname }}">
+                <img src="{{ Avatar::create(Auth::user()->load('identitas')->identitas->fullname)->toBase64() }}" class="user-image img-circle elevation-2"
+                    alt="{{ Auth::user()->load('identitas')->identitas->fullname }}">
                 @endif
             @endif
             <p class="@if(!config('adminlte.usermenu_image')) mt-0 @endif">
-                {{ Auth::user()->fullname }}
+                {{ Auth::user()->load('identitas')->identitas->fullname }}
                 @if(config('adminlte.usermenu_desc'))
                 <small>{{ Auth::user()->adminlte_desc() }}</small>
                 @endif

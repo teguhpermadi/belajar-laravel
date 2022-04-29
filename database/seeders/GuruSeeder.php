@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Guru;
+use App\Models\AlamatUser;
+use App\Models\IdentitasUser;
+use App\Models\NomorIdentitasUser;
+use App\Models\OrangTuaUser;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -15,10 +18,15 @@ class GuruSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=0; $i < 5; $i++) { 
+        for ($i = 0; $i < 5; $i++) {
             # code...
-            $user = User::factory()->hasGuru()->create();
-            $user->assignRole('active', 'guru');
+            $user = User::factory()
+                ->has(IdentitasUser::factory())
+                ->has(AlamatUser::factory())
+                ->has(NomorIdentitasUser::factory())
+                ->has(OrangTuaUser::factory())
+                ->create();
+            $user->assignRole(['active', 'guru']);
         }
     }
 }

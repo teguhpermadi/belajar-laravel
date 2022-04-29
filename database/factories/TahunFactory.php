@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Guru;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TahunFactory extends Factory
@@ -18,7 +18,7 @@ class TahunFactory extends Factory
             'tahun' => $this->faker->year($max = 'now'),
             'semester' => $this->faker->randomElement(['ganjil', 'genap']),
             'tanggal_awal' => $this->faker->date(),
-            // 'kepala_sekolah' => Guru::all()->random()->id,
+            'user_id' => User::role(['active', 'guru'])->get()->random()->id,
         ];
     }
 }
