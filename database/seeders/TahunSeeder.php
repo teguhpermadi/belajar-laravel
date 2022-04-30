@@ -14,6 +14,6 @@ class TahunSeeder extends Seeder
      */
     public function run()
     {
-        Tahun::factory()->count(3)->create();
+        Tahun::factory()->count(10)->create();
     }
 }

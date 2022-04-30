@@ -18,11 +18,15 @@
                     'Tanggal Awal',
                     'Tanggal Akhir',
                     'Kepala Sekolah',
+                    // 'created_at',
+                    // 'updated_at',
                     ['label' => 'Actions', 'no-export' => true, 'width' => 15],
                     ];
 
-                    $config = ['order' => [[1, 'asc']],
-                    'columns' => [null, null, null, ['orderable' => false]],
+                    $config = [
+                        // 'data' => route('tahun.getdata'),
+                        'order' => [[1, 'asc']],
+                        'columns' => [null, null, null, ['orderable' => false]],
                     ];
                 @endphp
 
@@ -49,7 +53,9 @@
             </x-adminlte-card>
         </div>
     </div>
-
+    
+    {{ $data->links() }}
+    
     @stop
 
         @section('css')

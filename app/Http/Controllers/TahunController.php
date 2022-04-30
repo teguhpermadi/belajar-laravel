@@ -14,9 +14,14 @@ class TahunController extends Controller
      */
     public function index()
     {
-        $data = Tahun::with('kepalasekolah.identitas')->paginate(10);
+        $data = Tahun::with('kepalasekolah.identitas')->paginate(5);
         // return $data;
         return view('tahun.index', ['data' => $data]);
+    }
+
+    public function getData()
+    {
+        return Tahun::all();
     }
 
     /**
@@ -48,7 +53,7 @@ class TahunController extends Controller
      */
     public function show($id)
     {
-        return Tahun::with('kepalasekolah.identitas')->where('id',$id)->firstOrFail();
+        return Tahun::with('kepalasekolah.identitas')->where('id', $id)->firstOrFail();
     }
 
     /**
