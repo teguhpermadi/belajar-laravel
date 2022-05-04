@@ -14,9 +14,22 @@ class GuruController extends Controller
      */
     public function index()
     {
-        $data = User::role(['active', 'guru'])->with('identitas')->get();
         // return($data);
-        return view('guru.index', ['teachers' => $data]);
+        // return view('guru.index', ['teachers' => $data]);
+        return view('guru.index');
+    }
+
+    public function anyData()
+    {
+        $query = User::role(['active', 'guru'])->with('identitas')->get();
+
+        return datatables()->of($query)
+            ->addColumn('link', '<a href="#">Html Column</a>')
+            ->addColumn('action', 'guru.action-datatables')
+            ->addColumn('avatar', 'guru.avatar-datatables')
+            ->rawColumns(['link', 'action', 'avatar'])
+            ->addIndexColumn()
+            ->toJson();
     }
 
     /**

@@ -10,54 +10,18 @@
     <div class="row">
         <div class="col-12">
             <x-adminlte-card title="Data guru">
-                {{-- Setup data for datatables --}}
-                @php
-                    $heads = [
-                    'Nama',
-                    'Jenis Kelamin',
-                    'Kontak',
-                    ['label' => 'Actions', 'no-export' => true, 'width' => 15],
-                    ];
+                <table class="table table-bordered" id="datatables-example">
+                    <thead>
+                       <tr>
+                          <th>No</th>
+                          <th>Avatar</th>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th>Actions</th>
+                       </tr>
+                    </thead>
+                 </table>
 
-                    $config = ['order' => [[1, 'asc']],
-                    'columns' => [null, null, null, ['orderable' => false]],
-                    ];
-                @endphp
-
-                <x-adminlte-datatable id="table1" :heads="$heads" head-theme="dark" :config="$config"
-                striped hoverable bordered compressed>
-                   @foreach ($teachers as $teacher)
-                   <tr>
-                       <td>
-                            @if ($teacher->identitas->avatar != null)
-                            <img src="{{ asset('storage/uploads/avatars/' . $teacher->identitas->avatar) }}"
-                                class="identitas-image img-circle elevation-2 mr-3" alt="{{ $teacher->identitas->fullname }}" height="30">
-                            @else
-                            <img src="{{ Avatar::create($teacher->identitas->fullname)->toBase64() }}" class="identitas-image img-circle elevation-2 mr-3"
-                                alt="{{ $teacher->identitas->fullname }}" height="30">
-                            @endif   
-                        {{ Str::upper($teacher->identitas->fullname )}}</td>
-                       <td>{{ Str::ucfirst($teacher->jenis_kelamin) }}</td>
-                       <td>{{ $teacher->identitas->phone }}</td>
-                       <td>
-                            <button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Edit">
-                                <i class="fa fa-lg fa-fw fa-pen"></i>
-                            </button>
-                            <a class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details" href="{{ route('guru.show', $teacher->id) }}">
-                                <i class="fa fa-lg fa-fw fa-eye"></i>
-                            </a>
-                            <form action="{{ route('guru.destroy', $teacher->id) }}" method="POST">
-                                @method('delete')
-                                @csrf()
-                                <input type="hidden" name="id" value="{{ $teacher->id }}">
-                                <button type="submit" class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete">
-                                    <i class="fa fa-lg fa-fw fa-trash"></i>
-                                </button>
-                            </form>
-                       </td>
-                   </tr>
-                   @endforeach
-                </x-adminlte-datatable>
             </x-adminlte-card>
         </div>
     </div>
@@ -65,11 +29,31 @@
     @stop
 
         @section('css')
-        <link rel="stylesheet" href="/css/admin_custom.css">
+        {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+        <link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet"> --}}
+        <link  href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+
         @stop
 
             @section('js')
+            <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+            <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+            <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
             <script>
                 console.log('Hi!');
+                $(document).ready( function () {
+                    $('#datatables-example').DataTable({
+                        processing: true,
+                        serverSide: true,
+                        ajax: "{{ route('guru.data') }}",
+                        columns: [
+                                    { data: 'DT_RowIndex', name: 'DT_RowIndex' },
+                                    { data: 'avatar', name: 'avatar' },
+                                    { data: 'identitas.fullname', name: 'identitas.fullname' },
+                                    { data: 'email', name: 'email' },
+                                    { data: 'action', name: 'action' },
+                                ]
+                    });
+                });
             </script>
             @stop
