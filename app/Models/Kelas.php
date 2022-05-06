@@ -21,9 +21,9 @@ class Kelas extends Model
         'level',
     ];
 
-    public function guru()
+    public function walikelas()
     {
-        return $this->belongsTo(Guru::class, 'walikelas_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function tahun()

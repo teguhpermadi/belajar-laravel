@@ -39,12 +39,14 @@ Route::get('/home', function () {
 })->name('home')->middleware('auth');
 
 // profil user
-Route::group(['middleware' => ['auth', 'role:active']], function () {
-    Route::resource('kelas', KelasController::class);
+Route::group(['middleware' => ['auth']], function () {
     Route::get('tahun/getdata', [TahunController::class, 'getData'])->name('tahun.getdata');
     Route::resource('sekolah', ProfilSekolahController::class);
 });
 
+
+Route::get('kelas/data', [KelasController::class, 'anyData'])->name('kelas.data');
+Route::resource('kelas', KelasController::class);
 Route::get('siswa/data', [SiswaController::class, 'anyData'])->name('siswa.data');
 Route::resource('siswa', SiswaController::class);
 Route::get('guru/data', [GuruController::class, 'anyData'])->name('guru.data');

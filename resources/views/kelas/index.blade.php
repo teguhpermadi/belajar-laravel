@@ -11,48 +11,17 @@
 <div class="row">
     <div class="col-12">
         <x-adminlte-card title="Data Kelas">
-            @php
-            $heads = [
-                ['label' => 'Nama Kelas'],
-                ['label' => 'Level'],
-                ['label' => 'Aktif'],
-                ['label' => 'Actions', 'no-export' => true, 'width' => 15],
-            ];
-
-        
-            $config = [
-                'columns' => [null, null, null, ['orderable' => false]],
-            ];        
-            @endphp
-        
-            <x-adminlte-datatable id="table2" :heads="$heads" head-theme="dark" :config="$config"
-                striped hoverable bordered compressed>
-                @foreach ($kelas as $k)
-                    <tr>
-                        <td>{{ $k->nama }}</td>
-                        <td>{{ $k->level }}</td>
-                        <td>
-                            @livewire('kelas.kelas-aktif', ['kelas_id' => $k->id, 'status' => $k->aktif])
-                        </td>
-                        <td>
-                            <button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Edit">
-                                <i class="fa fa-lg fa-fw fa-pen"></i>
-                            </button>
-                            <a class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details" href="{{ route('kelas.show', $k->id) }}">
-                                <i class="fa fa-lg fa-fw fa-eye"></i>
-                            </a>
-                            <form action="{{ route('kelas.destroy', $k->id) }}" method="POST">
-                                @method('delete')
-                                @csrf()
-                                <input type="hidden" name="id" value="{{ $k->id }}">
-                                <button type="submit" class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete">
-                                    <i class="fa fa-lg fa-fw fa-trash"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>                    
-                @endforeach
-            </x-adminlte-datatable>
+            <table class="table table-bordered" id="datatables-example">
+                <thead>
+                   <tr>
+                      <th>No</th>
+                      <th>Nama Kelas</th>
+                      <th>Tingkat</th>
+                      <th>Walikelas</th>
+                      <th>Actions</th>
+                   </tr>
+                </thead>
+             </table>
         </x-adminlte-card>
     </div>
 </div>
@@ -60,11 +29,31 @@
 @stop
 
 @section('css')
-<link rel="stylesheet" href="/css/admin_custom.css">
+{{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet"> --}}
+<link  href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+
 @stop
 
 @section('js')
-<script>
-    console.log('Hi!');
-</script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+            <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+            <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+            <script>
+                console.log('Hi!');
+                $(document).ready( function () {
+                    $('#datatables-example').DataTable({
+                        processing: true,
+                        serverSide: true,
+                        ajax: "{{ route('kelas.data') }}",
+                        columns: [
+                                    { data: 'DT_RowIndex', name: 'DT_RowIndex' },
+                                    { data: 'nama', name: 'nama' },
+                                    { data: 'level', name: 'level' },
+                                    { data: 'walikelas.identitas_user.fullname', name: 'walikelas.identitas_user.fullname' },
+                                    { data: 'action', name: 'action' },
+                                ]
+                    });
+                });
+            </script>
 @stop

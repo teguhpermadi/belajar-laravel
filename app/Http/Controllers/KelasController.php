@@ -16,9 +16,20 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $tahun_id = session()->get('tahun_id');
-        $kelas = Kelas::with('tahun', 'guru.user')->where('tahun_id', $tahun_id)->get();
-        return view('kelas.index', ['kelas' => $kelas, 'tahun_id' => $tahun_id]);
+        return view('kelas.index');
+    }
+    
+    public function anyData()
+    {
+        // $tahun_id = session()->get('tahun_id');
+        $tahun_id = Tahun::all()->first()->id;
+        $query = Kelas::with('tahun', 'walikelas.identitasUser')->where('tahun_id', $tahun_id)->get();
+        // return $query;
+        return datatables()->of($query)
+            ->addColumn('action', 'kelas.action-datatables')
+            ->rawColumns(['action'])
+            ->addIndexColumn()
+            ->toJson();
     }
     
     /**
