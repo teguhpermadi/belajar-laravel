@@ -49,7 +49,7 @@
                         columns: [
                                     { data: 'DT_RowIndex', name: 'DT_RowIndex' },
                                     { data: 'avatar', name: 'avatar' },
-                                    { data: 'identitas.fullname', name: 'identitas.fullname' },
+                                    { data: 'identitas_user.fullname', name: 'identitas_user.fullname' },
                                     { data: 'email', name: 'email' },
                                     { data: 'action', name: 'action' },
                                 ]

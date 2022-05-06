@@ -6,9 +6,11 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfilSekolahController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\TahunController;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,18 +34,19 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', function() {
+Route::get('/home', function () {
     return view('home');
 })->name('home')->middleware('auth');
 
 // profil user
 Route::group(['middleware' => ['auth', 'role:active']], function () {
     Route::resource('kelas', KelasController::class);
-    Route::resource('siswa', SiswaController::class);
     Route::get('tahun/getdata', [TahunController::class, 'getData'])->name('tahun.getdata');
     Route::resource('sekolah', ProfilSekolahController::class);
 });
 
+Route::get('siswa/data', [SiswaController::class, 'anyData'])->name('siswa.data');
+Route::resource('siswa', SiswaController::class);
 Route::get('guru/data', [GuruController::class, 'anyData'])->name('guru.data');
 Route::resource('guru', GuruController::class);
 Route::resource('tahun', TahunController::class);
@@ -56,6 +59,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('delete_avatar', [UserController::class, 'delete_avatar'])->name('delete_avatar');
 });
 
-Route::get('tes', function(Request $request){
-   return Auth::user()->load(['identitas'])->identitas->fullname;
+Route::get('tes', function (Request $request) {
+    $query = User::where('is_active', '1')->role('guru')->with('identitasUser')->get();
+    return $query;
 });

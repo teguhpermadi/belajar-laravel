@@ -14,15 +14,13 @@ class GuruController extends Controller
      */
     public function index()
     {
-        // return($data);
-        // return view('guru.index', ['teachers' => $data]);
         return view('guru.index');
     }
 
     public function anyData()
     {
-        $query = User::role(['active', 'guru'])->with('identitas')->get();
-
+    $query = User::where('is_active', '1')->role('guru')->with('identitasUser')->get();
+    // return $query;
         return datatables()->of($query)
             ->addColumn('link', '<a href="#">Html Column</a>')
             ->addColumn('action', 'guru.action-datatables')

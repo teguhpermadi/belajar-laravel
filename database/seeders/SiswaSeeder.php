@@ -22,7 +22,7 @@ class SiswaSeeder extends Seeder
     public function run()
     {
 
-        for ($i=0; $i < 50; $i++) { 
+        for ($i=0; $i < 5; $i++) { 
             # code...
             $user = User::factory()
                 ->has(IdentitasUser::factory())
@@ -30,7 +30,7 @@ class SiswaSeeder extends Seeder
                 ->has(NomorIdentitasUser::factory())
                 ->has(OrangTuaUser::factory())
                 ->create();
-            $user->assignRole('active', 'siswa');
+            $user->assignRole('siswa');
         }
         
         // $students = Siswa::factory()->count(3)->hasUser()->create();

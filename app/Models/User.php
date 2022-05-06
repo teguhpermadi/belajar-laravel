@@ -29,6 +29,7 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'is_active',
     ];
 
     /**
@@ -68,22 +69,22 @@ class User extends Authenticatable
         return 'profile';
     }
 
-    public function identitas()
+    public function IdentitasUser()
     {
         return $this->hasOne(IdentitasUser::class);
     }
 
-    public function Alamat()
+    public function AlamatUser()
     {
         return $this->hasOne(AlamatUser::class);
     }
 
-    public function NomorIdentitas()
+    public function NomorIdentitasUser()
     {
         return $this->hasOne(NomorIdentitasUser::class);
     }
 
-    public function Orangtua()
+    public function OrangtuaUser()
     {
         return $this->hasOne(OrangTuaUser::class);
     }

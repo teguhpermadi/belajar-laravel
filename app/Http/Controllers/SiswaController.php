@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Siswa;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -14,10 +14,20 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $students = Siswa::with('user')->get();
-        // return $students;
-        // dd($students);
-        return view('siswa.index', ['students' => $students]);
+        return view('siswa.index');
+    }
+
+    public function anyData()
+    {
+        $query = User::where('is_active', '1')->role('siswa')->with('identitasUser')->get();
+
+        return datatables()->of($query)
+            ->addColumn('link', '<a href="#">Html Column</a>')
+            ->addColumn('action', 'siswa.action-datatables')
+            ->addColumn('avatar', 'siswa.avatar-datatables')
+            ->rawColumns(['link', 'action', 'avatar'])
+            ->addIndexColumn()
+            ->toJson();
     }
 
     /**
@@ -49,7 +59,7 @@ class SiswaController extends Controller
      */
     public function show($id)
     {
-        $data = Siswa::with('user', 'provinsi', 'kota','kecamatan', 'kelurahan')->where('user_id',$id)->firstOrFail();
+        $data = User::with('identitas', 'alamat.provinsi', 'alamat.kota', 'alamat.kecamatan', 'alamat.kelurahan')->where('id', $id)->firstOrFail();
         // dd ($data);
         return view('siswa.show', ['siswa' => $data]);
     }

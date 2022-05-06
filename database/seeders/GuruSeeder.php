@@ -26,7 +26,7 @@ class GuruSeeder extends Seeder
                 ->has(NomorIdentitasUser::factory())
                 ->has(OrangTuaUser::factory())
                 ->create();
-            $user->assignRole(['active', 'guru']);
+            $user->assignRole('guru');
         }
     }
 }
