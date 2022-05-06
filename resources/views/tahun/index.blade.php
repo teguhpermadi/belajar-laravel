@@ -11,59 +11,49 @@
     <div class="row">
         <div class="col-12">
             <x-adminlte-card title="Data Tahun Pelajaran">
-                @php
-                    $heads = [
-                    'Tahun',
-                    'Semester',
-                    'Tanggal Awal',
-                    'Tanggal Akhir',
-                    'Kepala Sekolah',
-                    // 'created_at',
-                    // 'updated_at',
-                    ['label' => 'Actions', 'no-export' => true, 'width' => 15],
-                    ];
-
-                    $config = [
-                        // 'data' => route('tahun.getdata'),
-                        'order' => [[1, 'asc']],
-                        'columns' => [null, null, null, ['orderable' => false]],
-                    ];
-                @endphp
-
-                <x-adminlte-datatable id="table1" :heads="$heads" head-theme="dark" :config="$config"
-                striped hoverable bordered compressed>
-                   @foreach ($data as $tahun)
-                   <tr>
-                       <td>{{ $tahun->tahun }}</td>
-                       <td>{{ $tahun->semester }}</td>
-                       <td>{{ $tahun->tanggal_awal }}</td>
-                       <td>{{ $tahun->tanggal_akhir }}</td>
-                       <td>{{ $tahun->kepalasekolah->identitas->fullname }}</td>
-                       <td>
-                        <button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Edit">
-                            <i class="fa fa-lg fa-fw fa-pen"></i>
-                        </button>
-                        <a class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details" href="{{ route('tahun.show', $tahun->id) }}">
-                            <i class="fa fa-lg fa-fw fa-eye"></i>
-                        </a>
-                       </td>
-                   </tr>
-                   @endforeach
-                </x-adminlte-datatable>
+                <table class="table table-bordered" id="datatables-example">
+                    <thead>
+                       <tr>
+                          <th>No</th>
+                          <th>Tahun</th>
+                          <th>Semester</th>
+                          <th>Kepala Sekolah</th>
+                          <th>Actions</th>
+                       </tr>
+                    </thead>
+                 </table>
             </x-adminlte-card>
         </div>
     </div>
     
-    {{ $data->links() }}
-    
     @stop
 
         @section('css')
-        <link rel="stylesheet" href="/css/admin_custom.css">
+        {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+        <link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet"> --}}
+        <link  href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+
         @stop
 
             @section('js')
+            <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+            <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+            <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
             <script>
                 console.log('Hi!');
+                $(document).ready( function () {
+                    $('#datatables-example').DataTable({
+                        processing: true,
+                        serverSide: true,
+                        ajax: "{{ route('tahun.data') }}",
+                        columns: [
+                                    { data: 'DT_RowIndex', name: 'DT_RowIndex' },
+                                    { data: 'tahun', name: 'tahun' },
+                                    { data: 'semester', name: 'semester' },
+                                    { data: 'kepala_sekolah.identitas_user.fullname', name: 'kepala_sekolah.identitas_user.fullname' },
+                                    { data: 'action', name: 'action' },
+                                ]
+                    });
+                });
             </script>
             @stop

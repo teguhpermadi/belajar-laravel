@@ -40,7 +40,6 @@ Route::get('/home', function () {
 
 // profil user
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('tahun/getdata', [TahunController::class, 'getData'])->name('tahun.getdata');
     Route::resource('sekolah', ProfilSekolahController::class);
 });
 
@@ -51,6 +50,7 @@ Route::get('siswa/data', [SiswaController::class, 'anyData'])->name('siswa.data'
 Route::resource('siswa', SiswaController::class);
 Route::get('guru/data', [GuruController::class, 'anyData'])->name('guru.data');
 Route::resource('guru', GuruController::class);
+Route::get('tahun/data', [TahunController::class, 'anyData'])->name('tahun.data');
 Route::resource('tahun', TahunController::class);
 
 Route::group(['middleware' => ['auth']], function () {
