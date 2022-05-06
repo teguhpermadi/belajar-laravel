@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\Rombel;
 use App\Models\Tahun;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -23,7 +24,7 @@ class KelasController extends Controller
     {
         // $tahun_id = session()->get('tahun_id');
         $tahun_id = Tahun::all()->first()->id;
-        $query = Kelas::with('tahun', 'walikelas.identitasUser')->where('tahun_id', $tahun_id)->get();
+        $query = Kelas::withCount('rombel')->with('tahun', 'walikelas.identitasUser')->where('tahun_id', $tahun_id)->get();
         // return $query;
         return datatables()->of($query)
             ->addColumn('action', 'kelas.action-datatables')
@@ -61,7 +62,7 @@ class KelasController extends Controller
      */
     public function show($id)
     {
-        $data = Kelas::findOrFail($id);
+        $data = Kelas::withCount('rombel')->with('rombel.siswa')->where('id', $id)->get();
         return $data;
     }
 

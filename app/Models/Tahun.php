@@ -14,7 +14,6 @@ class Tahun extends Model
 
     protected $keyType = 'uuid';
 
-    
     protected $fillable = [
         'tahun',
         'semester',

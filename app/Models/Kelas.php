@@ -30,4 +30,14 @@ class Kelas extends Model
     {
         return $this->belongsTo(Tahun::class);
     }
+
+    public function rombel()
+    {
+        return $this->hasMany(Rombel::class);
+    }
+
+    public function siswa()
+    {
+        return $this->hasMany(User::class, 'user_id');
+    }
 }

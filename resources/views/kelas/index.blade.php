@@ -18,6 +18,7 @@
                       <th>Nama Kelas</th>
                       <th>Tingkat</th>
                       <th>Walikelas</th>
+                      <th>Jumlah Siswa</th>
                       <th>Actions</th>
                    </tr>
                 </thead>
@@ -51,6 +52,7 @@
                                     { data: 'nama', name: 'nama' },
                                     { data: 'level', name: 'level' },
                                     { data: 'walikelas.identitas_user.fullname', name: 'walikelas.identitas_user.fullname' },
+                                    { data: 'rombel_count', name: 'rombel_count'},
                                     { data: 'action', name: 'action' },
                                 ]
                     });

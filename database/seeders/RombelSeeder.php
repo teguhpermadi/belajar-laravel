@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Kelas;
+use App\Models\Rombel;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +16,6 @@ class RombelSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Rombel::factory()->count(20)->create();
     }
 }

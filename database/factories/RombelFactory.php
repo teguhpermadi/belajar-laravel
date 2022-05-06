@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Kelas;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,8 @@ class RombelFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'kelas_id' => Kelas::all()->random()->id,
+            'user_id' => User::role('siswa')->get()->random()->id,
         ];
     }
 }
