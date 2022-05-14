@@ -27,5 +27,10 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Paginator::useBootstrapFive();
+        \Spatie\Flash\Flash::levels([
+            'success' => 'alert-success',
+            'warning' => 'alert-warning',
+            'error' => 'alert-error',
+        ]);
     }
 }

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TahunRequest;
 use App\Models\Tahun;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Bilfeldt\LaravelFlashMessage\Message;
 
 class TahunController extends Controller
 {
@@ -19,7 +22,7 @@ class TahunController extends Controller
 
     public function anyData()
     {
-        $query = Tahun::with('kepalaSekolah.identitasUser')->get();
+        $query = Tahun::with('kepalaSekolah.identitasUser')->orderBy('created_at', 'desc')->get();
         return datatables()->of($query)
             ->addColumn('action', 'tahun.action-datatables')
             ->rawColumns(['action'])
@@ -34,7 +37,8 @@ class TahunController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::role('guru')->with('identitasUser')->get();
+        return view('tahun.create', ['users' => $users]);
     }
 
     /**
@@ -43,9 +47,13 @@ class TahunController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TahunRequest $request)
     {
-        //
+        $validated = $request->validated();
+        // return $validated;
+        Tahun::create($validated);
+        flash()->success('Data berhasil disimpan');
+        return redirect('tahun');
     }
 
     /**
@@ -56,7 +64,9 @@ class TahunController extends Controller
      */
     public function show($id)
     {
-        return Tahun::with('kepalaSekolah.identitasUser')->where('id', $id)->firstOrFail();
+        $data = Tahun::with('kepalaSekolah.identitasUser')->where('id', $id)->firstOrFail();
+        // return $data;
+        return view('tahun.show', ['data' => $data]);
     }
 
     /**
@@ -67,7 +77,10 @@ class TahunController extends Controller
      */
     public function edit($id)
     {
-        //
+        $users = User::role('guru')->with('identitasUser')->get();
+        $data = Tahun::with('kepalaSekolah.identitasUser')->where('id', $id)->firstOrFail();
+        // return $data;
+        return view('tahun.update', ['data' => $data, 'users' => $users]);
     }
 
     /**
@@ -77,9 +90,12 @@ class TahunController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TahunRequest $request, $id)
     {
-        //
+        $validated = $request->validated();
+        Tahun::where('id', $id)->update($validated);
+        flash()->success('Data berhasil diubah');
+        return to_route('tahun.index');
     }
 
     /**

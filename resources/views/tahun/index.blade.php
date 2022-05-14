@@ -6,11 +6,22 @@
 {{ Breadcrumbs::render('tahun') }}
 @stop
 
+
     @section('content')
-    
+    @if(flash()->message)
+        <div class="alert {{ flash()->class }}">
+            {{ flash()->message }}
+        </div>
+
+        @if(flash()->level === 'error')
+            This was an error.
+        @endif
+    @endif
+
     <div class="row">
         <div class="col-12">
             <x-adminlte-card title="Data Tahun Pelajaran">
+                <a href="{{ route('tahun.create') }}" class="btn btn-primary mb-3">Baru</a>                
                 <table class="table table-bordered" id="datatables-example">
                     <thead>
                        <tr>
@@ -30,9 +41,8 @@
 
         @section('css')
         {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
-        <link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet"> --}}
+        <link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
         <link  href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-
         @stop
 
             @section('js')
