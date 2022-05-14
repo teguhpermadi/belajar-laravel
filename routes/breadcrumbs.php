@@ -45,7 +45,7 @@ Breadcrumbs::for('siswa', function (BreadcrumbTrail $trail) {
 });
 
 // Beranda > Data > Siswa > [nama siswa]
-Breadcrumbs::for('show siswa', function (BreadcrumbTrail $trail, $data) {
+Breadcrumbs::for('show.siswa', function (BreadcrumbTrail $trail, $data) {
     $trail->parent('siswa', route('siswa.index'));
     $trail->push(Str::upper($data->fullname));
 });
@@ -57,7 +57,7 @@ Breadcrumbs::for('guru', function (BreadcrumbTrail $trail) {
 });
 
 // Beranda > Data > Guru > [nama siswa]
-Breadcrumbs::for('show guru', function (BreadcrumbTrail $trail, $data) {
+Breadcrumbs::for('show.guru', function (BreadcrumbTrail $trail, $data) {
     $trail->parent('guru', route('guru.index'));
     $trail->push(Str::upper($data->fullname));
 });

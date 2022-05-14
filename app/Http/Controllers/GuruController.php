@@ -61,7 +61,7 @@ class GuruController extends Controller
     {
         $data = User::with('IdentitasUser', 'alamatUser.provinsi', 'alamatUser.kota', 'alamatUser.kecamatan', 'alamatUser.kelurahan', 'NomorIdentitasUser')->where('id', $id)->firstOrFail();
         // return ($data);
-        return view('guru.show', ['guru' => $data]);
+        return view('guru.show', ['data' => $data]);
     }
 
     /**

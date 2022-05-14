@@ -24,6 +24,7 @@ class NomorIdentitasUserFactory extends Factory
             'niy' => $this->faker->randomNumber($nbDigits = NULL, $strict = false),
             'nuptk' => $this->faker->randomNumber($nbDigits = NULL, $strict = false),
             'nisn' => $this->faker->randomNumber($nbDigits = NULL, $strict = false),
+            'nis' => $this->faker->randomNumber($nbDigits = NULL, $strict = false),
         ];
     }
 }

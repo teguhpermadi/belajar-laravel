@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('niy')->nullable()->comment('nomor induk yayasan');
             $table->string('nuptk')->nullable()->comment('nomor unik pendidik dan tenaga kependidikan');
             $table->string('nisn')->nullable()->comment('nomor induk siswa nasional'); 
+            $table->string('nis')->nullable()->comment('nomor induk siswa'); 
             $table->timestamps();
         });
     }

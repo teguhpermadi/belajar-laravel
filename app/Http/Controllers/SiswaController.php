@@ -59,9 +59,9 @@ class SiswaController extends Controller
      */
     public function show($id)
     {
-        $data = User::with('identitas', 'alamat.provinsi', 'alamat.kota', 'alamat.kecamatan', 'alamat.kelurahan')->where('id', $id)->firstOrFail();
-        // dd ($data);
-        return view('siswa.show', ['siswa' => $data]);
+        $data = User::with('IdentitasUser', 'alamatUser.provinsi', 'alamatUser.kota', 'alamatUser.kecamatan', 'alamatUser.kelurahan', 'NomorIdentitasUser', 'OrangTuaUser')->where('id', $id)->firstOrFail();
+        // return ($data);
+        return view('siswa.show', ['data' => $data]);
     }
 
     /**

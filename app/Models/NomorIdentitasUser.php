@@ -22,6 +22,7 @@ class NomorIdentitasUser extends Model
         'niy',
         'nuptk',
         'nisn',
+        'nis',
     ];
 
     public function user()
