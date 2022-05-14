@@ -4,7 +4,7 @@
 
 @section('content_header')
 {{-- <h1>Data guru {{ $guru->user->name }}</h1> --}}
-{{ Breadcrumbs::render('show guru', $guru->user) }}
+{{ Breadcrumbs::render('show guru', $guru->identitasUser) }}
 @stop
 
 @section('content')
@@ -14,103 +14,74 @@
             <table class="table table-striped">
                 <tr>
                     <td style="width:50%">Nama Lengkap</td>
-                    <td>{{ $guru->user->fullname }}</td>
+                    <td>{{ Str::title($guru->identitasUser->fullname) }}</td>
                 </tr>
                 <tr>
                     <td>Nama Panggilan</td>
-                    <td>{{ $guru->user->nickname }}</td>
+                    <td>{{ Str::title($guru->identitasUser->nickname) }}</td>
                 </tr>
                 <tr>
                     <td>Jenis Kelamin</td>
-                    <td>{{ $guru->jenis_kelamin }}</td>
+                    <td>{{ Str::title($guru->identitasUser->jenis_kelamin) }}</td>
                 </tr>
-                <tr>
-                    <td>NIK</td>
-                    <td>{{ $guru->nik }}</td>
-                </tr>
-                <tr>
-                    <td>NIP</td>
-                    <td>{{ $guru->nip }}</td>
-                </tr>
-                <tr>
-                    <td>NIY</td>
-                    <td>{{ $guru->niy }}</td>
-                </tr>
-                <tr>
-                    <td>Status Pegawai</td>
-                    <td>{{ $guru->status_pegawai }}</td>
-                </tr>
+                
                 <tr>
                     <td>Tempat Lahir</td>
-                    <td>{{ $guru->tempat_lahir }}</td>
+                    <td>{{ Str::title($guru->identitasUser->tempat_lahir) }}</td>
                 </tr>
                 <tr>
                     <td>Tanggal Lahir</td>
-                    <td>{{ $guru->tanggal_lahir }}</td>
+                    <td>{{ $guru->identitasUser->tanggal_lahir }}</td>
+                </tr>
+                
+                <tr>
+                    <td>Email</td>
+                    <td>{{ Str::lower($guru->email) }}</td>
+                </tr>
+            </table>
+        </x-adminlte-card>
+
+        <x-adminlte-card title="Nomor Identitas" theme="primary" theme-mode="outline" collapsible>
+            <table class="table table-striped">
+                <tr>
+                    <td>NIK</td>
+                    <td>{{ $guru->nomorIdentitasUser->nik }}</td>
                 </tr>
                 <tr>
+                    <td>NIP</td>
+                    <td>{{ $guru->nomorIdentitasUser->nip }}</td>
+                </tr>
+                <tr>
+                    <td>NIY</td>
+                    <td>{{ $guru->nomorIdentitasUser->niy }}</td>
+                </tr>
+            </table>
+        </x-adminlte-card>
+
+        <x-adminlte-card title="Tempat Tinggal" theme="primary" theme-mode="outline" collapsible>
+            <table class="table table-striped">
+                <tr>
                     <td>Alamat</td>
-                    <td>{{ $guru->alamat }}</td>
+                    <td>{{ $guru->alamatUser->alamat }}</td>
                 </tr>
                 <tr>
                     <td>Kelurahan</td>
-                    <td>{{ $guru->kelurahan->name }}</td>
+                    <td>{{ $guru->alamatUser->kelurahan->name }}</td>
                 </tr>
                 <tr>
                     <td>Kecamatan</td>
-                    <td>{{ $guru->kecamatan->name }}</td>
+                    <td>{{ $guru->alamatUser->kecamatan->name }}</td>
                 </tr>
                 <tr>
                     <td>Kota/Kabupaten</td>
-                    <td>{{ $guru->kota->name }}</td>
+                    <td>{{ $guru->alamatUser->kota->name }}</td>
                 </tr>
                 <tr>
                     <td>Provinsi</td>
-                    <td>{{ $guru->provinsi->name }}</td>
-                </tr>
-                <tr>
-                    <td>Kontak</td>
-                    <td>{{ $guru->user->phone }}</td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td>{{ $guru->user->email }}</td>
+                    <td>{{ $guru->alamatUser->provinsi->name }}</td>
                 </tr>
             </table>
         </x-adminlte-card>
-        {{-- <x-adminlte-card title="Data Ayah" theme="primary" theme-mode="outline" collapsible>
-            <table class="table table-striped">
-                <tr>
-                    <td  style="width:50%">Nama Ayah</td>
-                    <td>{{ $guru->nama_ayah }}</td>
-                </tr>
-                <tr>
-                    <td>Pekerjaan</td>
-                    <td>{{ $guru->pekerjaan_ayah }}</td>
-                </tr>
-                <tr>
-                    <td>Penghasilan</td>
-                    <td>{{ $guru->penghasilan_ayah }}</td>
-                </tr>
-            </table>
-        </x-adminlte-card>
-        <x-adminlte-card title="Data Ibu" theme="primary" theme-mode="outline" collapsible>
-            <table class="table table-striped">
-                <tr>
-                    <td  style="width:50%">Nama Ibu</td>
-                    <td>{{ $guru->nama_ibu }}</td>
-                </tr>
-                <tr>
-                    <td>Pekerjaan</td>
-                    <td>{{ $guru->pekerjaan_ibu }}</td>
-                </tr>
-                <tr>
-                    <td>Penghasilan</td>
-                    <td>{{ $guru->penghasilan_ibu }}</td>
-                </tr>
-            </table>
-        </x-adminlte-card> --}}
-        
     </div>
 </div>
 

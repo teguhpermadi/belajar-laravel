@@ -11,16 +11,24 @@
     <div class="row">
         <div class="col-12">
             <x-adminlte-card title="Edit Tahun Pelajaran">
-                <dl class="row">
-                    <dt class="col-sm-4">Tahun</dt>
-                    <dd class="col-sm-8">{{ $data->tahun }}</dd>
-                    <dt class="col-sm-4">Semester</dt>
-                    <dd class="col-sm-8">{{ $data->semester }}</dd>
-                    <dt class="col-sm-4">Tanggal Awal</dt>
-                    <dd class="col-sm-8">{{ $data->tanggal_awal }}</dd>
-                    <dt class="col-sm-4">Kepala Sekolah</dt>
-                    <dt class="col-sm-8">{{ $data->kepalasekolah->identitasuser->fullname }}</dt>
-                </dl>
+            <table class="table table-striped">
+                <tr>
+                    <td>Tahun</td>
+                    <td>{{ $data->tahun }}</td>
+                </tr>
+                <tr>
+                    <td>Semester</td>
+                    <td>{{ $data->semester }}</td>
+                </tr>
+                <tr>
+                    <td>Tanggal Awal</td>
+                    <td>{{ $data->tanggal_awal }}</td>
+                </tr>
+                <tr>
+                    <td>Kepala Sekolah</td>
+                    <td>{{ Str::title($data->kepalasekolah->identitasuser->fullname) }}</td>
+                </tr>
+            </table>
             </x-adminlte-card>
         </div>
     </div>
