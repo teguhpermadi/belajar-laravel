@@ -10,7 +10,7 @@
 
     <div class="row">
         <div class="col-12">
-            <x-adminlte-card title="Edit Tahun Pelajaran">
+            <x-adminlte-card title="Tahun Pelajaran">
             <table class="table table-striped">
                 <tr>
                     <td>Tahun</td>

@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\IdentitasUser;
 use App\Models\Kelas;
 use App\Models\Rombel;
 use App\Models\Tahun;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class KelasController extends Controller
@@ -19,11 +23,11 @@ class KelasController extends Controller
     {
         return view('kelas.index');
     }
-    
+
     public function anyData()
     {
-        // $tahun_id = session()->get('tahun_id');
-        $tahun_id = Tahun::all()->first()->id;
+        $tahun_id = session()->get('tahun_id');
+        // $tahun_id = Tahun::all()->first()->id;
         $query = Kelas::withCount('rombel')->with('tahun', 'walikelas.identitasUser')->where('tahun_id', $tahun_id)->get();
         // return $query;
         return datatables()->of($query)
@@ -32,7 +36,7 @@ class KelasController extends Controller
             ->addIndexColumn()
             ->toJson();
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -40,7 +44,7 @@ class KelasController extends Controller
      */
     public function create()
     {
-        return 'create';
+        return view('kelas.create');
     }
 
     /**
@@ -51,7 +55,6 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-
     }
 
     /**
@@ -62,8 +65,24 @@ class KelasController extends Controller
      */
     public function show($id)
     {
-        $data = Kelas::withCount('rombel')->with('rombel.siswa')->where('id', $id)->get();
-        return $data;
+        $kelas = Kelas::withCount('rombel')->with(['walikelas.identitasUser'])->where('id', $id)->firstOrFail();
+        $laki = IdentitasUser::with('rombel')->where('jenis_kelamin', 'l')->whereRelation('rombel', 'kelas_id', $id)->get()->count();
+        $perempuan = IdentitasUser::with('rombel')->where('jenis_kelamin', 'p')->whereRelation('rombel', 'kelas_id', $id)->get()->count();
+
+        // return $kelas;
+        // return $rombel;
+
+        return view('kelas.show', ['data' => $kelas, 'laki' => $laki, 'perempuan' => $perempuan]);
+    }
+
+    public function siswa_rombel($id)
+    {
+        $query = Rombel::with('identitasUser')->where('kelas_id', $id)->get();
+        return datatables()->of($query)
+            ->addColumn('action', 'kelas.action-datatables')
+            ->rawColumns(['action'])
+            ->addIndexColumn()
+            ->toJson();
     }
 
     /**

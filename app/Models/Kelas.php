@@ -40,4 +40,9 @@ class Kelas extends Model
     {
         return $this->hasMany(User::class, 'user_id');
     }
+
+    public function tes()
+    {
+        return $this->hasMany(Rombel::class, );
+    }
 }

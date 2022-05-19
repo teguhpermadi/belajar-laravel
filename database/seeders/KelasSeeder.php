@@ -14,6 +14,6 @@ class KelasSeeder extends Seeder
      */
     public function run()
     {
-        Kelas::factory(5)->create();
+        Kelas::factory(3)->create();
     }
 }

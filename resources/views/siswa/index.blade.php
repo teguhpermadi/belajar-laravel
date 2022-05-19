@@ -9,7 +9,7 @@
     @section('content')
     <div class="row">
         <div class="col-12">
-            <x-adminlte-card title="Data Siswa">
+            <x-adminlte-card title="Siswa">
                 <table class="table table-bordered" id="datatables-example">
                     <thead>
                        <tr>

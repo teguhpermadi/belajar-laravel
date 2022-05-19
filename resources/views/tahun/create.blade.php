@@ -10,7 +10,7 @@
 
     <div class="row">
         <div class="col-12">
-            <x-adminlte-card title="Tambah Tahun Pelajaran">
+            <x-adminlte-card title="Tahun Pelajaran">
                 <form action="{{ route('tahun.store') }}" method="post">
                     @csrf
                     <div class="row">

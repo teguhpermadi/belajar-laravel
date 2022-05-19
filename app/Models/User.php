@@ -88,4 +88,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(OrangTuaUser::class);
     }
+
+    public function Rombel()
+    {
+        return $this->belongsTo(Rombel::class);
+    }
 }

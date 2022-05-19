@@ -20,7 +20,7 @@
 
     <div class="row">
         <div class="col-12">
-            <x-adminlte-card title="Data Tahun Pelajaran">
+            <x-adminlte-card title="Tahun Pelajaran">
                 <a href="{{ route('tahun.create') }}" class="btn btn-primary mb-3">Baru</a>                
                 <table class="table table-bordered" id="datatables-example">
                     <thead>

@@ -65,7 +65,19 @@ Breadcrumbs::for('show.guru', function (BreadcrumbTrail $trail, $data) {
 // Beranda > Kelas
 Breadcrumbs::for('kelas', function (BreadcrumbTrail $trail) {
     $trail->parent('beranda');
-    $trail->push(Str::upper('Kelas'));
+    $trail->push(Str::upper('Kelas'), route('kelas.index'));
+});
+
+// Beranda > Kelas > Baru
+Breadcrumbs::for('kelas.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('kelas');
+    $trail->push(Str::upper('baru'));
+});
+
+// Beranda > Kelas > [Nama Kelas]
+Breadcrumbs::for('kelas.show', function (BreadcrumbTrail $trail, $data) {
+    $trail->parent('kelas');
+    $trail->push(Str::upper($data->nama));
 });
 
 // Beranda > Tahun 

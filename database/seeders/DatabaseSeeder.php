@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             // UserSeeder::class,
             TahunSeeder::class,
             KelasSeeder::class,
+            RombelSeeder::class,
         ]);
     }
 }

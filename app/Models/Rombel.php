@@ -19,8 +19,13 @@ class Rombel extends Model
         return $this->belongsTo(Kelas::class, 'kelas_id');
     }
 
-    public function siswa()
+    public function identitasUser()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(IdentitasUser::class, 'user_id', 'user_id');
+    }
+
+    public function jenis_kelamin()
+    {
+        return $this->hasMany(IdentitasUser::class, 'user_id', 'user_id')->count('jenis_kelamin', 'l');
     }
 }

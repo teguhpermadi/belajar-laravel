@@ -10,8 +10,8 @@
 
 <div class="row">
     <div class="col-12">
-        <x-adminlte-card title="Form Kelas">
-        @livewire('kelas.form-kelas')
+        <x-adminlte-card title="Kelas">
+
         </x-adminlte-card>
     </div>
 </div>

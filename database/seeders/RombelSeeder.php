@@ -16,6 +16,6 @@ class RombelSeeder extends Seeder
      */
     public function run()
     {
-        Rombel::factory()->count(20)->create();
+        Rombel::factory()->count(5)->create();
     }
 }

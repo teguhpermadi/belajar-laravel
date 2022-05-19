@@ -45,6 +45,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 Route::get('kelas/data', [KelasController::class, 'anyData'])->name('kelas.data');
+Route::get('kelas/data/rombel/{id}', [KelasController::class, 'siswa_rombel'])->name('kelas.siswaRombel');
 Route::resource('kelas', KelasController::class);
 Route::get('siswa/data', [SiswaController::class, 'anyData'])->name('siswa.data');
 Route::resource('siswa', SiswaController::class);
