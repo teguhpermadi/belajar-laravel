@@ -21,8 +21,9 @@
     <div class="row">
         <div class="col-12">
             <x-adminlte-card title="Tahun Pelajaran">
-                <a href="{{ route('tahun.create') }}" class="btn btn-primary mb-3">Baru</a>                
-                <table class="table table-bordered" id="datatables-example">
+                <a href="{{ route('tahun.create') }}" class="btn btn-primary mb-3">Baru</a>         
+                <div class="table-responsive">       
+                <table class="table table-bordered" id="datatables-example" width="100%">
                     <thead>
                        <tr>
                           <th>No</th>
@@ -33,6 +34,7 @@
                        </tr>
                     </thead>
                  </table>
+                </div>
             </x-adminlte-card>
         </div>
     </div>

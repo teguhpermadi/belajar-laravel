@@ -32,16 +32,18 @@
 <div class="row">
     <div class="col-12">
         <x-adminlte-card title="Anggota Kelas">
-            <table class="table table-bordered" id="datatables-example">
-                <thead>
-                   <tr>
-                      <th>No</th>
-                      <th>Nama Lengkap</th>
-                      <th>Jenis Kelamin</th>
-                      <th>Actions</th>
-                   </tr>
-                </thead>
-             </table>
+                <div class="table-responsive">       
+                    <table class="table table-bordered" id="datatables-example" width="100%">
+                        <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Lengkap</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
         </x-adminlte-card>
     </div>
 </div>
