@@ -72,7 +72,8 @@ class GuruController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = User::where('id', $id)->firstOrFail();
+        return view('guru.update', ['data' => $data]);
     }
 
     /**
