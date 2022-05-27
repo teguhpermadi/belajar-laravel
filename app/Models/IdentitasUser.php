@@ -23,7 +23,7 @@ class IdentitasUser extends Model
         'jenis_kelamin',
         'tempat_lahir',
         'tanggal_lahir',
-        'ttd,'
+        'ttd',
     ];
 
     public function user()

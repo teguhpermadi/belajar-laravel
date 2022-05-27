@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AlamatUserRequest;
+use App\Http\Requests\GuruRequest;
+use App\Http\Requests\IdentitasUserRequest;
+use App\Models\AlamatUser;
+use App\Models\IdentitasUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -83,9 +88,14 @@ class GuruController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(GuruRequest $request, $id)
     {
-        //
+        $validated = $request->validated();
+        return $validated;
+        // IdentitasUser::where('id', $id)->update($validated);
+        // AlamatUser::where('user_id', $id)->update($validated);
+        // to_route('guru.index');
+
     }
 
     /**
