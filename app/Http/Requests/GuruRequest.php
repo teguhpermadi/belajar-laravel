@@ -28,22 +28,31 @@ class GuruRequest extends FormRequest
             // 'user_id',
             'fullname' => 'required',
             'nickname' => 'required',
-            // 'avatar',
-            // 'phone',
+            'avatar' => 'image',
+            'phone' => 'numeric',
             'jenis_kelamin' => 'required',
             'tempat_lahir' => 'required',
-            'tanggal_lahir' => 'required',
+            'tanggal_lahir' => 'required|date',
 
             // alamat user
             // 'user_id',
             'alamat' => 'required',
-            // 'kodepos'=> 'required',
-            'provinsi_id'=> 'required',
-            'kota_id'=> 'required',
-            'kecamatan_id'=> 'required',
-            'kelurahan_id'=> 'required',
-            // 'long',
-            // 'lat',
+            'kodepos' => 'required|numeric',
+            'provinsi_id' => 'required',
+            'kota_id' => 'required',
+            'kecamatan_id' => 'required',
+            'kelurahan_id' => 'required',
+            'long' => 'numeric',
+            'lat' => 'numeric',
+
+            // nomor identitas
+            'nik' => 'numeric',
+            'nkk' => 'numeric',
+            'nip' => 'numeric',
+            'niy' => 'numeric',
+            'nuptk' => 'numeric',
+            'nisn' => 'numeric',
+            'nis' => 'numeric',
         ];
     }
 }

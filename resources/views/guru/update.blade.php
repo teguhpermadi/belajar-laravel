@@ -67,7 +67,11 @@
                     value="{{ Str::title($data->alamatUser->alamat) }}" />
                 <x-adminlte-input label="Kodepos" name="kodepos"
                     value="{{ Str::title($data->alamatUser->kodepos) }}" />
-                @livewire('alamat.edit-alamat', ['selectedVillage'=>'1'])
+                    @livewire('alamat.edit-alamat', ['selectedVillage'=>'1'])
+                <x-adminlte-input label="Lattitude" name="lat"
+                    value="{{ Str::title($data->alamatUser->lat) }}" />
+                <x-adminlte-input label="Longtitude" name="long"
+                    value="{{ Str::title($data->alamatUser->long) }}" />
             </x-adminlte-card>
         </div>
     </div>

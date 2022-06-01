@@ -7,8 +7,10 @@ use App\Http\Requests\GuruRequest;
 use App\Http\Requests\IdentitasUserRequest;
 use App\Models\AlamatUser;
 use App\Models\IdentitasUser;
+use App\Models\NomorIdentitasUser;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class GuruController extends Controller
 {
@@ -24,8 +26,8 @@ class GuruController extends Controller
 
     public function anyData()
     {
-    $query = User::where('is_active', '1')->role('guru')->with('identitasUser')->get();
-    // return $query;
+        $query = User::where('is_active', '1')->role('guru')->with('identitasUser')->get();
+        // return $query;
         return datatables()->of($query)
             ->addColumn('link', '<a href="#">Html Column</a>')
             ->addColumn('action', 'guru.action-datatables')
@@ -91,11 +93,41 @@ class GuruController extends Controller
     public function update(GuruRequest $request, $id)
     {
         $validated = $request->validated();
-        return $validated;
-        // IdentitasUser::where('id', $id)->update($validated);
-        // AlamatUser::where('user_id', $id)->update($validated);
-        // to_route('guru.index');
+        // return $validated;
+        IdentitasUser::where('user_id', $id)->update(Arr::only($validated, [
+            'fullname',
+            'nickname',
+            'avatar',
+            'phone',
+            'jenis_kelamin',
+            'tempat_lahir',
+            'tanggal_lahir',
+            'ttd'
+        ]));
+        
+        AlamatUser::where('user_id', $id)->update(Arr::only($validated, [
+            'alamat',
+            'kodepos',
+            'provinsi_id',
+            'kota_id',
+            'kecamatan_id',
+            'kelurahan_id',
+            'long',
+            'lat',
+        ]));
+        
+        NomorIdentitasUser::where('user_id', $id)->update(Arr::only($validated, [
+            'nik',
+            'nkk',
+            'nip',
+            'niy',
+            'nuptk',
+            'nisn',
+            'nis',
+        ]));
 
+        flash()->warning('Data berhasil diubah');
+        return to_route('guru.index');
     }
 
     /**
@@ -106,7 +138,7 @@ class GuruController extends Controller
      */
     public function destroy($id)
     {
-        Guru::where('user_id',$id)->delete();
+        Guru::where('user_id', $id)->delete();
         return redirect()->route('guru.index');
     }
 }
