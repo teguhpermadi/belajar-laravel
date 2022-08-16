@@ -52,7 +52,7 @@
                         <x-adminlte-select name="user_id" label="Kepala Sekolah" fgroup-class="col-md-12">
                             <option value="">Pilih Kepala Sekolah</option>
                             @foreach ($users as $user)
-                                <option value="{{ $user->id }}" {{ $data->kepalasekolah->id == $user->id ? 'selected' : '' }}>{{ $user->IdentitasUser->fullname }}</option>
+                                <option value="{{ $user->id }}" {{ $data->kepalasekolah->id == $user->id ? 'selected' : '' }}>{{ $user->fullname }}</option>
                             @endforeach
                         </x-adminlte-select>
                         @error('user_id')

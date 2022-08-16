@@ -20,7 +20,7 @@ class RombelFactory extends Factory
     {
         return [
             'kelas_id' => Kelas::all()->random()->id,
-            'user_id' => User::role('siswa')->get()->random()->id,
+            'user_id' => User::role(['user','pd'])->get()->random()->id,
         ];
     }
 }

@@ -21,12 +21,9 @@ class GuruSeeder extends Seeder
         for ($i = 0; $i < 5; $i++) {
             # code...
             $user = User::factory()
-                ->has(IdentitasUser::factory())
-                ->has(AlamatUser::factory())
-                ->has(NomorIdentitasUser::factory())
                 ->has(OrangTuaUser::factory())
                 ->create();
-            $user->assignRole('guru');
+            $user->assignRole('user','ptk');
         }
     }
 }

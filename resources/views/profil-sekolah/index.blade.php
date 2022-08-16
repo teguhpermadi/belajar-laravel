@@ -28,7 +28,9 @@
                 <dt class="col-sm-4">website</dt>
                 <dd class="col-sm-8">{{ $sekolah->website }}</dd>
             </dl>
-            <a href="{{ route('sekolah.edit', $sekolah->id) }}" class="btn btn-warning">Edit</a>
+            <x-slot name="footerSlot">
+                    <a href="{{ route('sekolah.edit', $sekolah->id) }}" class="btn btn-warning">Edit</a>
+            </x-slot>
         </x-adminlte-card>
     </div>
 </div>

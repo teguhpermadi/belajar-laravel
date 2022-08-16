@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\ProfilSekolah;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Laravolt\Indonesia\Models\Village;
 
 class ProfilSekolahFactory extends Factory
 {
@@ -25,10 +26,7 @@ class ProfilSekolahFactory extends Factory
             'nama' => $this->faker->company(),
             'npsn' => $this->faker->randomNumber($nbDigits = 8, $strict = false),
             'alamat' => $this->faker->address(),
-            'provinsi' => $this->faker->state(),
-            'kota' => $this->faker->city(),
-            'kecamatan' => $this->faker->citySuffix(),
-            'kelurahan' => $this->faker->streetSuffix(),
+            'kelurahan_id' => Village::all()->random()->id,
             'telp' => $this->faker->phoneNumber(),
             'email' => $this->faker->email(),
             'kodepos' => $this->faker->postcode(),

@@ -17,7 +17,7 @@
         </x-adminlte-card>
     </div>
     <div class="col-6">
-        <x-adminlte-profile-widget name="{{ Str::upper($data->walikelas->identitasUser->fullname) }}" desc="Walikelas {{ Str::title($data->nama) }}" theme="primary"
+        <x-adminlte-profile-widget name="{{ Str::upper($data->walikelas->fullname) }}" desc="Walikelas {{ Str::title($data->nama) }}" theme="primary"
             img="https://picsum.photos/id/200/200" header-class="text-left">
             <x-adminlte-profile-col-item title="I'm also" text="Artist" size=3
                 class="text-orange border-right border-warning"/>
@@ -47,7 +47,7 @@
         </x-adminlte-card>
     </div>
 </div>
-
+{{ $laki }}
 {{ $data->kelas_id }}
 
 @stop
@@ -95,8 +95,8 @@
             ajax: "{{ route('kelas.siswaRombel', $data->id) }}",
             columns: [
                         { data: 'DT_RowIndex', name: 'DT_RowIndex' },
-                        { data: 'identitas_user.fullname', name: 'identitas_user.fullname' },
-                        { data: 'identitas_user.jenis_kelamin', name: 'identitas_user.jenis_kelamin' },
+                        { data: 'user.fullname', name: 'user.fullname' },
+                        { data: 'user.jenis_kelamin', name: 'user.jenis_kelamin' },
                         { data: 'action', name: 'action' },
                     ]
         });

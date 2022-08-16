@@ -23,11 +23,8 @@ class UserSeeder extends Seeder
     public function run()
     {
         $user = User::factory()
-            ->has(IdentitasUser::factory())
-            ->has(AlamatUser::factory())
-            ->has(NomorIdentitasUser::factory())
             ->has(OrangTuaUser::factory())
             ->create();
-        $user->assignRole('active');
+        $user->assignRole('user');
     }
 }

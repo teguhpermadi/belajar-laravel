@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\IdentitasUser;
+use App\Http\Requests\KelasRequest;
 use App\Models\Kelas;
 use App\Models\Rombel;
 use App\Models\Tahun;
@@ -26,9 +26,9 @@ class KelasController extends Controller
 
     public function anyData()
     {
-        $tahun_id = session()->get('tahun_id');
+        $tahun = session()->get('tahun_id');
         // $tahun_id = Tahun::all()->first()->id;
-        $query = Kelas::withCount('rombel')->with('tahun', 'walikelas.identitasUser')->where('tahun_id', $tahun_id)->get();
+        $query = Kelas::withCount('rombel')->with('tahun', 'walikelas')->where('tahun_id', $tahun)->get();
         // return $query;
         return datatables()->of($query)
             ->addColumn('action', 'kelas.action-datatables')
@@ -44,7 +44,43 @@ class KelasController extends Controller
      */
     public function create()
     {
-        return view('kelas.create');
+        $tahun = [];
+        $guru = [];
+        $session = session()->get('tahun_id');
+        $data_guru = User::select('id', 'fullname')->where('is_active', '1')->role('ptk')->get();
+        $data_tahun = Tahun::all();
+        $tahun_now = Tahun::where('id', $session)->first();
+        // return $tahun_now;
+
+        foreach ($data_guru as $key) {
+            $guru[$key->id] = $key->fullname;
+        }
+
+        foreach ($data_tahun as $key) {
+            $tahun[$key->id] = $key->tahun;
+        }
+        
+        switch (env('JENJANG_SEKOLAH')) {
+            case 'sma':
+                $optionsLevel = ['10' => '10', '11' => '11', '12' => '12'];
+                break;
+            case 'smp':
+                $optionsLevel = ['7' => '7', '8' => '8', '9' => '9'];
+                break;
+            case 'sd':
+                $optionsLevel = ['1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6'];
+                break;
+            case 'tk':
+                $optionsLevel = ['a' => 'a', 'b' => 'b'];
+                break;
+        };
+
+        return view('kelas.create', 
+        [
+            'optionsLevel' => $optionsLevel, 
+            'guru' => $guru, 'tahun' => $tahun, 
+            'tahun_now' => $tahun_now,
+        ]);
     }
 
     /**
@@ -53,8 +89,14 @@ class KelasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(KelasRequest $request)
     {
+        // dd($request);
+        $validated = $request->validated();
+        // return $validated;
+        Kelas::create($validated);
+        flash()->success('Data berhasil disimpan');
+        return redirect('kelas');
     }
 
     /**
@@ -65,19 +107,20 @@ class KelasController extends Controller
      */
     public function show($id)
     {
-        $kelas = Kelas::withCount('rombel')->with(['walikelas.identitasUser'])->where('id', $id)->firstOrFail();
-        $laki = IdentitasUser::with('rombel')->where('jenis_kelamin', 'l')->whereRelation('rombel', 'kelas_id', $id)->get()->count();
-        $perempuan = IdentitasUser::with('rombel')->where('jenis_kelamin', 'p')->whereRelation('rombel', 'kelas_id', $id)->get()->count();
+        $kelas = Kelas::withCount('rombel')->with(['walikelas'])->where('id', $id)->firstOrFail();
+        $laki = User::with('rombel')->where('jenis_kelamin', 'l')->whereRelation('rombel', 'kelas_id', $id)->get()->count();
+        $perempuan = User::with('rombel')->where('jenis_kelamin', 'p')->whereRelation('rombel', 'kelas_id', $id)->get()->count();
 
         // return $kelas;
-        // return $rombel;
+        // return $laki;
+        // return $perempuan;
 
         return view('kelas.show', ['data' => $kelas, 'laki' => $laki, 'perempuan' => $perempuan]);
     }
 
     public function siswa_rombel($id)
     {
-        $query = Rombel::with('identitasUser')->where('kelas_id', $id)->get();
+        $query = Rombel::with('user')->where('kelas_id', $id)->get();
         return datatables()->of($query)
             ->addColumn('action', 'kelas.action-datatables')
             ->rawColumns(['action'])

@@ -4,7 +4,7 @@
 
 @section('content_header')
     {{-- <h1>Data guru {{ $data->user->name }}</h1> --}}
-    {{ Breadcrumbs::render('show.guru', $data->identitasUser) }}
+    {{ Breadcrumbs::render('show.guru', $data) }}
 @stop
 
 @section('content')
@@ -27,24 +27,24 @@
         <div class="col-12">
             <x-adminlte-card title="Identitas Diri" theme="primary" theme-mode="outline" collapsible>
                 <x-adminlte-input label="Nama Lengkap" name="fullname"
-                    value="{{ Str::title($data->identitasUser->fullname) }}" />
+                    value="{{ Str::title($data->fullname) }}" />
                 <x-adminlte-input label="Nama Panggilan" name="nickname"
-                    value="{{ Str::title($data->identitasUser->nickname) }}" />
+                    value="{{ Str::title($data->nickname) }}" />
 
                 <x-adminlte-select label="Jenis Kelamin" name="jenis_kelamin">
                     <option value="">Pilih</option>
-                    <option value="l" @if ($data->identitasUser->jenis_kelamin == 'l') selected @endif>Laki-laki</option>
-                    <option value="p" @if ($data->identitasUser->jenis_kelamin == 'p') selected @endif>Perempuan</option>
+                    <option value="l" @if ($data->jenis_kelamin == 'l') selected @endif>Laki-laki</option>
+                    <option value="p" @if ($data->jenis_kelamin == 'p') selected @endif>Perempuan</option>
                 </x-adminlte-select>
 
                 <x-adminlte-input label="Tempat Lahir" name="tempat_lahir"
-                    value="{{ Str::title($data->identitasUser->tempat_lahir) }}" />
+                    value="{{ Str::title($data->tempat_lahir) }}" />
 
                 <div class="row">
                     @php
                     $config = ['format' => 'YYYY-MM-DD'];
                     @endphp
-                    <x-adminlte-input-date name="tanggal_lahir" label="Tanggal Lahir" :config="$config"  fgroup-class="col-md-12" value="{{ $data->identitasUser->tanggal_lahir }}"/>
+                    <x-adminlte-input-date name="tanggal_lahir" label="Tanggal Lahir" :config="$config"  fgroup-class="col-md-12" value="{{ $data->tanggal_lahir }}"/>
                     @error('tanggal_lahir')
                     <span class="invalid-feedback">
                         <strong>{{ $message }}</strong>
@@ -53,25 +53,25 @@
                 </div>
             </x-adminlte-card>
 
-            <x-adminlte-card title="Nomor Identitas" theme="primary" theme-mode="outline" collapsible>
+            {{-- <x-adminlte-card title="Nomor Identitas" theme="primary" theme-mode="outline" collapsible>
                 <x-adminlte-input label="Nomor Induk Kependudukan" name="nik"
-                    value="{{ Str::title($data->nomorIdentitasUser->nik) }}" />
+                    value="{{ Str::title($data->nomornik) }}" />
                 <x-adminlte-input label="Nomor Induk Pegawai" name="nip"
-                    value="{{ Str::title($data->nomorIdentitasUser->nip) }}" />
+                    value="{{ Str::title($data->nomornip) }}" />
                 <x-adminlte-input label="Nomor Induk Yayasan" name="niy"
-                    value="{{ Str::title($data->nomorIdentitasUser->niy) }}" />
-            </x-adminlte-card>
+                    value="{{ Str::title($data->nomorniy) }}" />
+            </x-adminlte-card> --}}
 
             <x-adminlte-card title="Tempat Tinggal" theme="primary" theme-mode="outline" collapsible>
                 <x-adminlte-input label="Alamat" name="alamat"
-                    value="{{ Str::title($data->alamatUser->alamat) }}" />
+                    value="{{ Str::title($data->alamat) }}" />
                 <x-adminlte-input label="Kodepos" name="kodepos"
-                    value="{{ Str::title($data->alamatUser->kodepos) }}" />
+                    value="{{ Str::title($data->kodepos) }}" />
                     @livewire('alamat.edit-alamat', ['selectedVillage'=>'1'])
-                <x-adminlte-input label="Lattitude" name="lat"
-                    value="{{ Str::title($data->alamatUser->lat) }}" />
+                {{-- <x-adminlte-input label="Lattitude" name="lat"
+                    value="{{ Str::title($data->lat) }}" />
                 <x-adminlte-input label="Longtitude" name="long"
-                    value="{{ Str::title($data->alamatUser->long) }}" />
+                    value="{{ Str::title($data->long) }}" /> --}}
             </x-adminlte-card>
         </div>
     </div>

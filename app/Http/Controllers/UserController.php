@@ -11,8 +11,12 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function profile(){
-    	return view('user-profile.index', array('user' => Auth::user()) );
+    public function profile($id = null){
+        if($id == null)
+        {
+            $id = Auth::user();
+        }
+    	return view('user-profile.index', array('user' => $id) );
     }
 
     public function update_avatar(Request $request){

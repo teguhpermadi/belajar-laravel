@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'SIAKAD',
+    'title' => 'siakad',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -122,12 +122,12 @@ return [
     */
 
     'classes_body' => '',
-    'classes_brand' => '',
+    'classes_brand' => 'bg-indigo',
     'classes_brand_text' => '',
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar' => 'sidebar-light-indigo elevation-4',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -243,12 +243,12 @@ return [
         // ],
         [
             'text' => 'blog',
-            'url'  => 'admin/blog',
+            'route'  => 'home',
             'can'  => 'manage-blog',
         ],
         [
             'text'        => 'Profil Sekolah',
-            'url'         => 'sekolah',
+            'route'         => 'sekolah.index',
             'icon'        => 'fas fa-school',
         ],
         [
@@ -258,22 +258,22 @@ return [
         ],
         [
             'text'        => 'Tahun',
-            'url'         => 'tahun',
+            'route'         => 'tahun.index',
             'icon'        => 'fas fa-circle',
         ],
         [
             'text'        => 'Guru',
-            'url'         => 'guru',
+            'route'         => 'guru.index',
             'icon'        => 'fas fa-circle',
         ],
         [
             'text'        => 'Siswa',
-            'url'         => 'siswa',
+            'route'         => 'siswa.index',
             'icon'        => 'fas fa-circle',
         ],
         [
             'text'        => 'Kelas',
-            'url'         => 'kelas',
+            'route'         => 'kelas.index',
             'icon'        => 'fas fa-circle',
         ],
         [

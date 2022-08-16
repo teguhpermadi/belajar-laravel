@@ -19,7 +19,7 @@ class SiswaController extends Controller
 
     public function anyData()
     {
-        $query = User::where('is_active', '1')->role('siswa')->with('identitasUser')->get();
+        $query = User::where('is_active', '1')->role('pd')->get();
 
         return datatables()->of($query)
             ->addColumn('link', '<a href="#">Html Column</a>')

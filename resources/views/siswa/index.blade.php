@@ -30,8 +30,7 @@
     @stop
 
         @section('css')
-        {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
-        <link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet"> --}}
+        {{-- <link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet"> --}} --}}
         <link  href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
         @stop
@@ -50,7 +49,7 @@
                         columns: [
                                     { data: 'DT_RowIndex', name: 'DT_RowIndex' },
                                     { data: 'avatar', name: 'avatar' },
-                                    { data: 'identitas_user.fullname', name: 'identitas_user.fullname' },
+                                    { data: 'fullname', name: 'fullname' },
                                     { data: 'email', name: 'email' },
                                     { data: 'action', name: 'action' },
                                 ]

@@ -22,7 +22,7 @@ class TahunController extends Controller
 
     public function anyData()
     {
-        $query = Tahun::with('kepalaSekolah.identitasUser')->orderBy('created_at', 'desc')->get();
+        $query = Tahun::with('kepalaSekolah')->orderBy('created_at', 'desc')->get();
         return datatables()->of($query)
             ->addColumn('action', 'tahun.action-datatables')
             ->rawColumns(['action'])
@@ -64,8 +64,8 @@ class TahunController extends Controller
      */
     public function show($id)
     {
-        $data = Tahun::with('kepalaSekolah.identitasUser')->where('id', $id)->firstOrFail();
-        // return $data;
+        $data = Tahun::with('kepalaSekolah')->where('id', $id)->firstOrFail();
+        return $data;
         return view('tahun.show', ['data' => $data]);
     }
 
@@ -77,8 +77,8 @@ class TahunController extends Controller
      */
     public function edit($id)
     {
-        $users = User::role('guru')->with('identitasUser')->get();
-        $data = Tahun::with('kepalaSekolah.identitasUser')->where('id', $id)->firstOrFail();
+        $users = User::role('ptk')->get();
+        $data = Tahun::with('kepalaSekolah')->where('id', $id)->firstOrFail();
         // return $data;
         return view('tahun.update', ['data' => $data, 'users' => $users]);
     }

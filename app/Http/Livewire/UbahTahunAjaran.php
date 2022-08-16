@@ -27,7 +27,7 @@ class UbahTahunAjaran extends Component
 
     public function updatedSelectedState($state)
     {
-        $value = session()->put('tahun_id',$state);
+        $value = session(["tahun_id" => $state]);
         return $value;
     }
 }

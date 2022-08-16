@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AlamatUserRequest;
 use App\Http\Requests\GuruRequest;
 use App\Http\Requests\IdentitasUserRequest;
 use App\Models\AlamatUser;
-use App\Models\IdentitasUser;
 use App\Models\NomorIdentitasUser;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -26,7 +24,7 @@ class GuruController extends Controller
 
     public function anyData()
     {
-        $query = User::where('is_active', '1')->role('guru')->with('identitasUser')->get();
+        $query = User::where('is_active', '1')->role('ptk')->get();
         // return $query;
         return datatables()->of($query)
             ->addColumn('link', '<a href="#">Html Column</a>')
@@ -66,7 +64,7 @@ class GuruController extends Controller
      */
     public function show($id)
     {
-        $data = User::with('IdentitasUser', 'alamatUser.provinsi', 'alamatUser.kota', 'alamatUser.kecamatan', 'alamatUser.kelurahan', 'NomorIdentitasUser')->where('id', $id)->firstOrFail();
+        $data = User::with('tempat_lahir', 'village.district.city.province')->where('id', $id)->firstOrFail();
         // return ($data);
         return view('guru.show', ['data' => $data]);
     }
@@ -94,7 +92,7 @@ class GuruController extends Controller
     {
         $validated = $request->validated();
         // return $validated;
-        IdentitasUser::where('user_id', $id)->update(Arr::only($validated, [
+        User::where('id', $id)->update(Arr::only($validated, [
             'fullname',
             'nickname',
             'avatar',

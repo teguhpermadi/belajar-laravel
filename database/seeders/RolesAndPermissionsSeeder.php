@@ -29,9 +29,10 @@ class RolesAndPermissionsSeeder extends Seeder
         // this can be done as separate statements
         // $role = Role::create(['name' => 'active']);
         // $role = Role::create(['name' => 'inactive']);
-        $role = Role::create(['name' => 'admin']);
         $role = Role::create(['name' => 'super admin']);
-        $role = Role::create(['name' => 'guru']);
-        $role = Role::create(['name' => 'siswa']);
+        $role = Role::create(['name' => 'admin']);
+        $role = Role::create(['name' => 'ptk']);
+        $role = Role::create(['name' => 'pd']);
+        $role = Role::create(['name' => 'user']);
     }
 }

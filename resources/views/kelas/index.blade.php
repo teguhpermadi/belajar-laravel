@@ -8,10 +8,24 @@
 
 @section('content')
 
+@if(flash()->message)
+        <div class="alert {{ flash()->class }}">
+            {{ flash()->message }}
+        </div>
+
+        @if(flash()->level === 'error')
+            This was an error.
+        @endif
+    @endif
+
+<div class="row">
+    <div class="col-12">
+        <a href="{{ route('kelas.create') }}" class="btn btn-primary mb-3">Baru</a>                
+    </div>
+</div>
 <div class="row">
     <div class="col-12">
         <x-adminlte-card title="Kelas">
-                <a href="{{ route('kelas.create') }}" class="btn btn-primary mb-3">Baru</a>                
                 <div class="table-responsive">       
                 <table class="table table-bordered" id="datatables-example" width="100%">
                 <thead>
@@ -34,7 +48,7 @@
 
 @section('css')
 {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
-<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+{{-- <link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet"> --}}
 <link  href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
 @stop
@@ -54,7 +68,7 @@
                                     { data: 'DT_RowIndex', name: 'DT_RowIndex' },
                                     { data: 'nama', name: 'nama' },
                                     { data: 'level', name: 'level' },
-                                    { data: 'walikelas.identitas_user.fullname', name: 'walikelas.identitas_user.fullname' },
+                                    { data: 'walikelas.fullname', name: 'walikelas.fullname' },
                                     { data: 'rombel_count', name: 'rombel_count'},
                                     { data: 'action', name: 'action' },
                                 ]

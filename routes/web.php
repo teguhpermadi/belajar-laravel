@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfilSekolahController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\TahunController;
+use App\Models\Tahun;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,42 +28,42 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Auth::routes();
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
 Auth::routes();
 
-Route::get('/home', function () {
-    return view('home');
-})->name('home')->middleware('auth');
+Route::group(['middleware' => ['auth', 'tahunAjaran']], function () {
+        Route::get('/home', function () {
+            return view('home');
+        })->name('home');
 
-// profil user
-Route::group(['middleware' => ['auth']], function () {
-    Route::resource('sekolah', ProfilSekolahController::class);
+        Route::resource('sekolah', ProfilSekolahController::class);
+
+        Route::get('profile', [UserController::class, 'profile'])->name('profile');
+        Route::post('update_avatar', [UserController::class, 'update_avatar'])->name('update_avatar');
+        Route::post('update_profile', [UserController::class, 'update_profile'])->name('update_profile');
+        Route::post('update_emailpassword', [UserController::class, 'update_emailpassword'])->name('update_emailpassword');
+        Route::post('delete_avatar', [UserController::class, 'delete_avatar'])->name('delete_avatar');
+
+        Route::get('kelas/data', [KelasController::class, 'anyData'])->name('kelas.data');
+        Route::get('kelas/data/rombel/{id}', [KelasController::class, 'siswa_rombel'])->name('kelas.siswaRombel');
+        Route::resource('kelas', KelasController::class);
+        Route::get('siswa/data', [SiswaController::class, 'anyData'])->name('siswa.data');
+        Route::resource('siswa', SiswaController::class);
+        Route::get('guru/data', [GuruController::class, 'anyData'])->name('guru.data');
+        Route::resource('guru', GuruController::class);
+        Route::get('tahun/data', [TahunController::class, 'anyData'])->name('tahun.data');
+        Route::resource('tahun', TahunController::class);
+
+        Route::get('/tes', function(){
+            return session()->get('tahun_id');
+        });
 });
 
+Route::group(['prefix' => 'siakad/', 'middleware' => 'tahunAjaran'], function () {
+    Route::get('/user', function () {
+        return 'user';
+    })->name('tes');
 
-Route::get('kelas/data', [KelasController::class, 'anyData'])->name('kelas.data');
-Route::get('kelas/data/rombel/{id}', [KelasController::class, 'siswa_rombel'])->name('kelas.siswaRombel');
-Route::resource('kelas', KelasController::class);
-Route::get('siswa/data', [SiswaController::class, 'anyData'])->name('siswa.data');
-Route::resource('siswa', SiswaController::class);
-Route::get('guru/data', [GuruController::class, 'anyData'])->name('guru.data');
-Route::resource('guru', GuruController::class);
-Route::get('tahun/data', [TahunController::class, 'anyData'])->name('tahun.data');
-Route::resource('tahun', TahunController::class);
-
-Route::group(['middleware' => ['auth']], function () {
-    Route::get('profile', [UserController::class, 'profile'])->name('profile');
-    Route::post('update_avatar', [UserController::class, 'update_avatar'])->name('update_avatar');
-    Route::post('update_profile', [UserController::class, 'update_profile'])->name('update_profile');
-    Route::post('update_emailpassword', [UserController::class, 'update_emailpassword'])->name('update_emailpassword');
-    Route::post('delete_avatar', [UserController::class, 'delete_avatar'])->name('delete_avatar');
-});
-
-Route::get('tes', function (Request $request) {
-    $query = User::where('is_active', '1')->role('guru')->with('identitasUser')->get();
-    return $query;
+    Route::get('/two', function ()    {
+        return Tahun::select('id')->latest()->first();
+    });
 });

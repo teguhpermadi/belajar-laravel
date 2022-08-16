@@ -25,12 +25,9 @@ class SiswaSeeder extends Seeder
         for ($i=0; $i < 5; $i++) { 
             # code...
             $user = User::factory()
-                ->has(IdentitasUser::factory())
-                ->has(AlamatUser::factory())
-                ->has(NomorIdentitasUser::factory())
                 ->has(OrangTuaUser::factory())
                 ->create();
-            $user->assignRole('siswa');
+            $user->assignRole('user','pd');
         }
         
         // $students = Siswa::factory()->count(3)->hasUser()->create();

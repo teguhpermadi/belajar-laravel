@@ -42,7 +42,7 @@ class KelasFactory extends Factory
         return [
             'nama' => $this->faker->bothify('kelas ##??'),
             'tahun_id' => Tahun::all()->random(),
-            'user_id' => User::role('guru')->get()->random()->id,
+            'user_id' => User::role(['user','ptk'])->get()->random()->id,
             'level' => $this->faker->randomElement($level),
         ];
     }
