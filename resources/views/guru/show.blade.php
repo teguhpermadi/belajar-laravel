@@ -27,7 +27,7 @@
                 
                 <tr>
                     <td>Tempat Lahir</td>
-                    <td>{{ Str::title($data->tempat_lahir) }}</td>
+                    <td>@livewire('tempat-lahir.show-tempat-lahir', ['city' => $data->tempat_lahir])</td>
                 </tr>
                 <tr>
                     <td>Tanggal Lahir</td>
@@ -82,6 +82,12 @@
                 </tr>
             </table>
         </x-adminlte-card>
+
+        <div class="row mt-3 ml-1">
+            <a class="btn btn-warning" title="Edit" href="{{ route('guru.edit', $data->id) }}">
+                Edit
+            </a>
+        </div>
     </div>
 </div>
 

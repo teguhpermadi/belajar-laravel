@@ -24,35 +24,32 @@ class GuruRequest extends FormRequest
     public function rules()
     {
         return [
-            // identitas user
-            // 'user_id',
+            'username' => 'unique:username',
+            'email' => 'email',
+            'password' => 'min:6',
             'fullname' => 'required',
             'nickname' => 'required',
             'avatar' => 'image',
+            'ttd' => 'image',
             'phone' => 'numeric',
             'jenis_kelamin' => 'required',
-            'tempat_lahir' => 'required',
+            'tempat_lahir' => 'required|exists:indonesia_cities,id',
             'tanggal_lahir' => 'required|date',
-
-            // alamat user
-            // 'user_id',
             'alamat' => 'required',
-            'kodepos' => 'required|numeric',
-            'provinsi_id' => 'required',
-            'kota_id' => 'required',
-            'kecamatan_id' => 'required',
-            'kelurahan_id' => 'required',
-            'long' => 'numeric',
-            'lat' => 'numeric',
+            'kodepos' => 'required|postal_code:ID',
+            'kelurahan_id' => 'required|exists:indonesia_villages,id',
+        ];
+    }
 
-            // nomor identitas
-            'nik' => 'numeric',
-            'nkk' => 'numeric',
-            'nip' => 'numeric',
-            'niy' => 'numeric',
-            'nuptk' => 'numeric',
-            'nisn' => 'numeric',
-            'nis' => 'numeric',
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'postal_code' => 'Masukkan kodepos wilayah Indonesia',
         ];
     }
 }

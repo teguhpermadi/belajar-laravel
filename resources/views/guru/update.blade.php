@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 
 @section('title', 'Profil Sekolah')
+@section('plugins.Select2', true)
 
 @section('content_header')
     {{-- <h1>Data guru {{ $data->user->name }}</h1> --}}
@@ -20,9 +21,7 @@
 <form action="{{ route('guru.update', $data->id) }}" method="post">
     @method('put')
     @csrf
-    <div class="row">
-        <button type="submit" class="btn btn-primary">simpan</button>
-    </div>
+    
     <div class="row">
         <div class="col-12">
             <x-adminlte-card title="Identitas Diri" theme="primary" theme-mode="outline" collapsible>
@@ -37,8 +36,9 @@
                     <option value="p" @if ($data->jenis_kelamin == 'p') selected @endif>Perempuan</option>
                 </x-adminlte-select>
 
-                <x-adminlte-input label="Tempat Lahir" name="tempat_lahir"
-                    value="{{ Str::title($data->tempat_lahir) }}" />
+                {{-- <x-adminlte-input label="Tempat Lahir" name="tempat_lahir"
+                    value="{{ Str::title($data->tempat_lahir) }}" /> --}}
+                @livewire('tempat-lahir.edit-tempat-lahir', ['selectedCity' => $data->tempat_lahir])
 
                 <div class="row">
                     @php
@@ -66,8 +66,9 @@
                 <x-adminlte-input label="Alamat" name="alamat"
                     value="{{ Str::title($data->alamat) }}" />
                 <x-adminlte-input label="Kodepos" name="kodepos"
-                    value="{{ Str::title($data->kodepos) }}" />
-                    @livewire('alamat.edit-alamat', ['selectedVillage'=>'1'])
+                    value="{{ ($data->kodepos) }}" />
+                    
+                @livewire('alamat.edit-alamat', ['selectedVillage'=> $data->kelurahan_id])
                 {{-- <x-adminlte-input label="Lattitude" name="lat"
                     value="{{ Str::title($data->lat) }}" />
                 <x-adminlte-input label="Longtitude" name="long"
@@ -75,11 +76,15 @@
             </x-adminlte-card>
         </div>
     </div>
+
+    <div class="row mt-3 ml-1">
+        <button type="submit" class="btn btn-primary">simpan</button>
+    </div>
 </form>
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
 @stop
 
 @section('js')

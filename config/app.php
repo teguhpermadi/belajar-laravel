@@ -179,6 +179,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
 
         Yajra\Datatables\DatatablesServiceProvider::class,
+        Axlon\PostalCodeValidation\ValidationServiceProvider::class,
     ],
 
     /*

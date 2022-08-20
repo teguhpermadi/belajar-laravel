@@ -24,10 +24,11 @@ class GuruController extends Controller
 
     public function anyData()
     {
+        // $query = User::role('ptk')->get();
         $query = User::where('is_active', '1')->role('ptk')->get();
         // return $query;
         return datatables()->of($query)
-            ->addColumn('link', '<a href="#">Html Column</a>')
+            ->addColumn('link', '<a href="">Html Column</a>')
             ->addColumn('action', 'guru.action-datatables')
             ->addColumn('avatar', 'guru.avatar-datatables')
             ->rawColumns(['link', 'action', 'avatar'])
@@ -92,36 +93,10 @@ class GuruController extends Controller
     {
         $validated = $request->validated();
         // return $validated;
-        User::where('id', $id)->update(Arr::only($validated, [
-            'fullname',
-            'nickname',
-            'avatar',
-            'phone',
-            'jenis_kelamin',
-            'tempat_lahir',
-            'tanggal_lahir',
-            'ttd'
-        ]));
-        
-        AlamatUser::where('user_id', $id)->update(Arr::only($validated, [
-            'alamat',
-            'kodepos',
-            'provinsi_id',
-            'kota_id',
-            'kecamatan_id',
-            'kelurahan_id',
-            'long',
-            'lat',
-        ]));
-        
-        NomorIdentitasUser::where('user_id', $id)->update(Arr::only($validated, [
-            'nik',
-            'nkk',
-            'nip',
-            'niy',
-            'nuptk',
-            'nisn',
-            'nis',
+        User::where('id', $id)->update(Arr::except($validated, [
+            'username',
+            'email',
+            'password'
         ]));
 
         flash()->warning('Data berhasil diubah');

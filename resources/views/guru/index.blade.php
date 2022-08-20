@@ -26,7 +26,7 @@
                        <tr>
                           <th>No</th>
                           <th>Avatar</th>
-                          <th>Name</th>
+                          {{-- <th>Name</th> --}}
                           <th>Email</th>
                           <th>Actions</th>
                        </tr>
@@ -60,7 +60,7 @@
                         columns: [
                                     { data: 'DT_RowIndex', name: 'DT_RowIndex' },
                                     { data: 'avatar', name: 'avatar' },
-                                    { data: 'fullname', name: 'fullname' },
+                                    // { data: 'fullname', name: 'fullname' },
                                     { data: 'email', name: 'email' },
                                     { data: 'action', name: 'action' },
                                 ]
