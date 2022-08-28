@@ -31,8 +31,9 @@ class KelasController extends Controller
         $query = Kelas::withCount('rombel')->with('tahun', 'walikelas')->where('tahun_id', $tahun)->get();
         // return $query;
         return datatables()->of($query)
+            ->addColumn('kelas', 'kelas.avatar-datatables')
             ->addColumn('action', 'kelas.action-datatables')
-            ->rawColumns(['action'])
+            ->rawColumns(['action', 'kelas'])
             ->addIndexColumn()
             ->toJson();
     }
@@ -121,9 +122,29 @@ class KelasController extends Controller
     public function siswa_rombel($id)
     {
         $query = Rombel::with('user')->where('kelas_id', $id)->get();
+        // return($query);
+        // return datatables()->of($query)
+        //     ->addColumn('action', 'kelas.action-datatables')
+        //     ->rawColumns(['action'])
+        //     ->addIndexColumn()
+        //     ->toJson();
         return datatables()->of($query)
-            ->addColumn('action', 'kelas.action-datatables')
-            ->rawColumns(['action'])
+            ->editColumn('kelamin', function($query){
+                switch ($query->user->jenis_kelamin) {
+                    case 'l':
+                        return 'Laki-laki';
+                        break;
+                    case 'p':
+                        return 'Perempuan';
+                        break;
+                }
+            })
+            ->editColumn('email', function($query){
+                return $query->user->email;
+            })
+            ->addColumn('action', 'kelas.siswa.action-datatables')
+            ->addColumn('avatar', 'kelas.siswa.avatar-datatables')
+            ->rawColumns(['link', 'action', 'avatar', 'email'])
             ->addIndexColumn()
             ->toJson();
     }

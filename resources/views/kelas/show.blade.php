@@ -35,12 +35,19 @@
                 <div class="table-responsive">       
                     <table class="table table-bordered" id="datatables-example" width="100%">
                         <thead>
-                        <tr>
+                        {{-- <tr>
                             <th>No</th>
                             <th>Nama Lengkap</th>
                             <th>Jenis Kelamin</th>
                             <th>Actions</th>
-                        </tr>
+                        </tr> --}}
+                        <tr>
+                            <th>No</th>
+                            <th>Name</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Email</th>
+                            <th>Actions</th>
+                         </tr>
                         </thead>
                     </table>
                 </div>
@@ -94,10 +101,15 @@
             method: 'GET',
             ajax: "{{ route('kelas.siswaRombel', $data->id) }}",
             columns: [
-                        { data: 'DT_RowIndex', name: 'DT_RowIndex' },
-                        { data: 'user.fullname', name: 'user.fullname' },
-                        { data: 'user.jenis_kelamin', name: 'user.jenis_kelamin' },
-                        { data: 'action', name: 'action' },
+                        // { data: 'DT_RowIndex', name: 'DT_RowIndex' },
+                        // { data: 'user.fullname', name: 'user.fullname' },
+                        // { data: 'user.jenis_kelamin', name: 'user.jenis_kelamin' },
+                        // { data: 'action', name: 'action' },
+                            { data: 'DT_RowIndex', name: 'DT_RowIndex' },
+                            { data: 'avatar', name: 'avatar' },
+                            { data: 'kelamin', name: 'kelamin' },
+                            { data: 'email', name: 'email' },
+                            { data: 'action', name: 'action' },
                     ]
         });
     });

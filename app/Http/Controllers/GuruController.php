@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\GuruRequest;
-use App\Http\Requests\IdentitasUserRequest;
-use App\Models\AlamatUser;
-use App\Models\NomorIdentitasUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class GuruController extends Controller
 {
@@ -26,9 +24,19 @@ class GuruController extends Controller
     {
         // $query = User::role('ptk')->get();
         $query = User::where('is_active', '1')->role('ptk')->get();
-        // return $query;
+        return $query;
         return datatables()->of($query)
             ->addColumn('link', '<a href="">Html Column</a>')
+            ->editColumn('kelamin', function($query){
+                switch ($query->jenis_kelamin) {
+                    case 'l':
+                        return 'Laki-laki';
+                        break;
+                    case 'p':
+                        return 'Perempuan';
+                        break;
+                }
+            })
             ->addColumn('action', 'guru.action-datatables')
             ->addColumn('avatar', 'guru.avatar-datatables')
             ->rawColumns(['link', 'action', 'avatar'])
@@ -79,7 +87,7 @@ class GuruController extends Controller
     public function edit($id)
     {
         $data = User::where('id', $id)->firstOrFail();
-        return view('guru.update', ['data' => $data]);
+        return view('guru.edit', ['data' => $data]);
     }
 
     /**

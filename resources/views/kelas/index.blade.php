@@ -66,7 +66,7 @@
                         ajax: "{{ route('kelas.data') }}",
                         columns: [
                                     { data: 'DT_RowIndex', name: 'DT_RowIndex' },
-                                    { data: 'nama', name: 'nama' },
+                                    { data: 'kelas', name: 'kelas' },
                                     { data: 'level', name: 'level' },
                                     { data: 'walikelas.fullname', name: 'walikelas.fullname' },
                                     { data: 'rombel_count', name: 'rombel_count'},

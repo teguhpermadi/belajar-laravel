@@ -67,6 +67,7 @@ class EditAlamat extends Component
 
     public function updatedSelectedProvince($province)
     {
+        // dd($province);
         $this->cities = null;
         $this->districts = null; 
         $this->villages = null;

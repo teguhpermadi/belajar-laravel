@@ -3,8 +3,8 @@
 @section('title', 'Profil Sekolah')
 
 @section('content_header')
-{{-- <h1>Data Siswa {{ $data->identitasUser->name }}</h1> --}}
-{{ Breadcrumbs::render('show.siswa', $data->identitasUser) }}
+{{-- <h1>Data Siswa {{ $data->name }}</h1> --}}
+{{ Breadcrumbs::render('show.siswa', $data) }}
 @stop
 
 @section('content')
@@ -14,24 +14,25 @@
             <table class="table table-striped">
                 <tr>
                     <td style="width:50%">Nama Lengkap</td>
-                    <td>{{ Str::title($data->identitasUser->fullname) }}</td>
+                    <td>{{ Str::title($data->fullname) }}</td>
                 </tr>
                 <tr>
                     <td>Nama Panggilan</td>
-                    <td>{{ Str::title($data->identitasUser->nickname) }}</td>
+                    <td>{{ Str::title($data->nickname) }}</td>
                 </tr>
                 <tr>
                     <td>Jenis Kelamin</td>
-                    <td>{{ Str::title($data->identitasUser->jenis_kelamin) }}</td>
+                    <td>{{ Str::title($data->jenis_kelamin) }}</td>
                 </tr>
                 
                 <tr>
                     <td>Tempat Lahir</td>
-                    <td>{{ Str::title($data->identitasUser->tempat_lahir) }}</td>
+                    <td>@livewire('tempat-lahir.show-tempat-lahir', ['city' => $data->tempat_lahir])</td>
+                    {{-- <td>{{ Str::title($data->tempat_lahir) }}</td> --}}
                 </tr>
                 <tr>
                     <td>Tanggal Lahir</td>
-                    <td>{{ $data->identitasUser->tanggal_lahir }}</td>
+                    <td>{{ $data->tanggal_lahir }}</td>
                 </tr>
                 
                 <tr>
@@ -41,24 +42,55 @@
             </table>
         </x-adminlte-card>
 
-        <x-adminlte-card title="Data Ayah" theme="primary" theme-mode="outline" collapsible>
+        <x-adminlte-card title="Tempat Tinggal" theme="primary" theme-mode="outline" collapsible>
             <table class="table table-striped">
                 <tr>
-                    <td>NIK</td>
-                    <td>{{ $data->nomorIdentitasUser->nik }}</td>
+                    <td>Alamat</td>
+                    <td>{{ $data->alamat }}</td>
                 </tr>
                 <tr>
-                    <td>NISN</td>
-                    <td>{{ $data->nomorIdentitasUser->nisn }}</td>
+                    <td>Kelurahan</td>
+                    <td>{{ $data->village->name }}</td>
                 </tr>
                 <tr>
-                    <td>NIS</td>
-                    <td>{{ $data->nomorIdentitasUser->nis }}</td> 
+                    <td>Kecamatan</td>
+                    <td>{{ $data->village->district->name }}</td>
+                </tr>
+                <tr>
+                    <td>Kota/Kabupaten</td>
+                    <td>{{ $data->village->district->city->name }}</td>
+                </tr>
+                <tr>
+                    <td>Provinsi</td>
+                    <td>{{ $data->village->district->city->province->name }}</td>
                 </tr>
             </table>
         </x-adminlte-card>
+
+        <div class="row mt-3 ml-1">
+            <a class="btn btn-warning" title="Edit" href="{{ route('siswa.edit', $data->id) }}">
+                Edit
+            </a>
+        </div>
+
+        {{-- <x-adminlte-card title="Data Ayah" theme="primary" theme-mode="outline" collapsible>
+            <table class="table table-striped">
+                <tr>
+                    <td>NIK</td>
+                    <td>{{ $data->nomornik }}</td>
+                </tr>
+                <tr>
+                    <td>NISN</td>
+                    <td>{{ $data->nomornisn }}</td>
+                </tr>
+                <tr>
+                    <td>NIS</td>
+                    <td>{{ $data->nomornis }}</td> 
+                </tr>
+            </table>
+        </x-adminlte-card> --}}
         
-        <x-adminlte-card title="Data Ayah" theme="primary" theme-mode="outline" collapsible>
+        {{-- <x-adminlte-card title="Data Ayah" theme="primary" theme-mode="outline" collapsible>
             <table class="table table-striped">
                 <tr>
                     <td  style="width:50%">Nama Ayah</td>
@@ -73,8 +105,8 @@
                     <td>{{ $data->orangTuaUser->penghasilan_ayah }}</td>
                 </tr>
             </table>
-        </x-adminlte-card>
-        <x-adminlte-card title="Data Ibu" theme="primary" theme-mode="outline" collapsible>
+        </x-adminlte-card> --}}
+        {{-- <x-adminlte-card title="Data Ibu" theme="primary" theme-mode="outline" collapsible>
             <table class="table table-striped">
                 <tr>
                     <td  style="width:50%">Nama Ibu</td>
@@ -89,8 +121,9 @@
                     <td>{{ $data->orangTuaUser->penghasilan_ibu }}</td>
                 </tr>
             </table>
-        </x-adminlte-card>
-        @if ($data->orangTuaUser->nama_wali || $data->orangTuaUser->pekerjaan_wali || $data->orangTuaUser->penghasilan_wali)
+        </x-adminlte-card> --}}
+
+        {{-- @if ($data->orangTuaUser->nama_wali || $data->orangTuaUser->pekerjaan_wali || $data->orangTuaUser->penghasilan_wali)
         <x-adminlte-card title="Data Wali" theme="primary" theme-mode="outline" collapsible>
             <table class="table table-striped">
                 <tr>
@@ -107,7 +140,7 @@
                 </tr>
             </table>
         </x-adminlte-card>
-        @endif
+        @endif --}}
     </div>
 </div>
 

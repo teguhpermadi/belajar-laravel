@@ -15,8 +15,8 @@
                     <thead>
                        <tr>
                           <th>No</th>
-                          <th>Avatar</th>
                           <th>Name</th>
+                          <th>Jenis Kelamin</th>
                           <th>Email</th>
                           <th>Actions</th>
                        </tr>
@@ -49,7 +49,7 @@
                         columns: [
                                     { data: 'DT_RowIndex', name: 'DT_RowIndex' },
                                     { data: 'avatar', name: 'avatar' },
-                                    { data: 'fullname', name: 'fullname' },
+                                    { data: 'kelamin', name: 'kelamin' },
                                     { data: 'email', name: 'email' },
                                     { data: 'action', name: 'action' },
                                 ]

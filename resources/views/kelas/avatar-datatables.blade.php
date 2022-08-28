@@ -1,0 +1,1 @@
+<a href="{{ route('kelas.show', $id) }}">{{ $nama }}</a>

@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
-class GuruRequest extends FormRequest
+class SiswaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -39,18 +40,6 @@ class GuruRequest extends FormRequest
             'alamat' => 'required',
             'kodepos' => 'required|postal_code:ID',
             'kelurahan_id' => 'required|exists:indonesia_villages,id',
-        ];
-    }
-
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array
-     */
-    public function messages()
-    {
-        return [
-            'postal_code' => 'Masukkan kodepos wilayah Indonesia',
         ];
     }
 }
