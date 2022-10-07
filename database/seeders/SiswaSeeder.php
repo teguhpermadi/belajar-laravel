@@ -22,12 +22,12 @@ class SiswaSeeder extends Seeder
     public function run()
     {
 
-        for ($i=0; $i < 5; $i++) { 
+        for ($i=0; $i < 20; $i++) { 
             # code...
             $user = User::factory()
                 ->has(OrangTuaUser::factory())
                 ->create();
-            $user->assignRole('user','pd');
+            $user->assignRole('pd');
         }
         
         // $students = Siswa::factory()->count(3)->hasUser()->create();

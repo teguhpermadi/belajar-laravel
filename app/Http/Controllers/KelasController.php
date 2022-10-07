@@ -144,7 +144,7 @@ class KelasController extends Controller
             })
             ->addColumn('action', 'kelas.siswa.action-datatables')
             ->addColumn('avatar', 'kelas.siswa.avatar-datatables')
-            ->rawColumns(['link', 'action', 'avatar', 'email'])
+            ->rawColumns(['link', 'action', 'avatar', 'email', 'checkbox'])
             ->addIndexColumn()
             ->toJson();
     }
@@ -157,7 +157,11 @@ class KelasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $kelas = Kelas::withCount('rombel')->with(['walikelas'])->where('id', $id)->firstOrFail();
+        $laki = User::with('rombel')->where('jenis_kelamin', 'l')->whereRelation('rombel', 'kelas_id', $id)->get()->count();
+        $perempuan = User::with('rombel')->where('jenis_kelamin', 'p')->whereRelation('rombel', 'kelas_id', $id)->get()->count();
+        // dd($kelas);
+        return view('kelas.edit', ['data' => $kelas, 'laki' => $laki, 'perempuan' => $perempuan]);
     }
 
     /**
@@ -168,8 +172,19 @@ class KelasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {        
+        Rombel::where('kelas_id', $id)->delete();
+        if(!is_null($request->selected_siswa)){
+            $data = [];
+            foreach ($request->selected_siswa as $req) {
+                $data[] = [
+                    'kelas_id' => $id,
+                    'user_id' => $req,
+                ];
+            }
+            Rombel::insert($data);
+        }
+        return to_route('kelas.index');
     }
 
     /**

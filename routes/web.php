@@ -67,3 +67,7 @@ Route::group(['prefix' => 'siakad/', 'middleware' => 'tahunAjaran'], function ()
         return Tahun::select('id')->latest()->first();
     });
 });
+
+Route::get('/tes', function ()    {
+    dd(User::where('is_active', '1')->role('user')->get());
+});

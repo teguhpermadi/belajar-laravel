@@ -23,7 +23,7 @@ class GuruSeeder extends Seeder
             $user = User::factory()
                 ->has(OrangTuaUser::factory())
                 ->create();
-            $user->assignRole('user','ptk');
+            $user->assignRole('ptk');
         }
     }
 }

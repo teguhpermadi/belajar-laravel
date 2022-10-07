@@ -24,9 +24,9 @@ class GuruController extends Controller
     {
         // $query = User::role('ptk')->get();
         $query = User::where('is_active', '1')->role('ptk')->get();
-        return $query;
+        // return $query;
         return datatables()->of($query)
-            ->addColumn('link', '<a href="">Html Column</a>')
+            // ->addColumn('link', '<a href="">Html Column</a>')
             ->editColumn('kelamin', function($query){
                 switch ($query->jenis_kelamin) {
                     case 'l':

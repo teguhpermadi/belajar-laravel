@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Kelas;
+use App\Models\Tahun;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -20,7 +21,7 @@ class RombelFactory extends Factory
     {
         return [
             'kelas_id' => Kelas::all()->random()->id,
-            'user_id' => User::role(['user','pd'])->get()->random()->id,
+            'user_id' => User::where('is_active', '1')->role('pd')->get()->random()->id,
         ];
     }
 }

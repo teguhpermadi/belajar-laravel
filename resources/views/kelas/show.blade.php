@@ -54,13 +54,11 @@
         </x-adminlte-card>
     </div>
 </div>
-{{ $laki }}
-{{ $data->kelas_id }}
 
 @stop
 
 @section('css')
-<link rel="stylesheet" href="/css/admin_custom.css">
+{{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
 @stop
 
 @section('js')

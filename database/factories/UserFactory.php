@@ -40,7 +40,7 @@ class UserFactory extends Factory
             'alamat' => $this->faker->address(),
             'kelurahan_id' => $village->id,
             'kodepos' => $village->meta['pos'],
-            'is_active' => $this->faker->randomElement(['1','0']),
+            // 'is_active' => $this->faker->randomElement(['1','0']),
         ];
     }
 
