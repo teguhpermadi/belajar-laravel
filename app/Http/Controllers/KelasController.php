@@ -79,7 +79,8 @@ class KelasController extends Controller
         return view('kelas.create', 
         [
             'optionsLevel' => $optionsLevel, 
-            'guru' => $guru, 'tahun' => $tahun, 
+            'guru' => $guru, 
+            'tahun' => $tahun, 
             'tahun_now' => $tahun_now,
         ]);
     }
@@ -157,11 +158,39 @@ class KelasController extends Controller
      */
     public function edit($id)
     {
+        $guru = [];
+        $data_guru = User::select('id', 'fullname')->where('is_active', '1')->role('ptk')->get();
+        
+        foreach ($data_guru as $key) {
+            $guru[$key->id] = $key->fullname;
+        }
+
+        switch (env('JENJANG_SEKOLAH')) {
+            case 'sma':
+                $optionsLevel = ['10' => '10', '11' => '11', '12' => '12'];
+                break;
+            case 'smp':
+                $optionsLevel = ['7' => '7', '8' => '8', '9' => '9'];
+                break;
+            case 'sd':
+                $optionsLevel = ['1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6'];
+                break;
+            case 'tk':
+                $optionsLevel = ['a' => 'a', 'b' => 'b'];
+                break;
+        };
+
         $kelas = Kelas::withCount('rombel')->with(['walikelas'])->where('id', $id)->firstOrFail();
         $laki = User::with('rombel')->where('jenis_kelamin', 'l')->whereRelation('rombel', 'kelas_id', $id)->get()->count();
         $perempuan = User::with('rombel')->where('jenis_kelamin', 'p')->whereRelation('rombel', 'kelas_id', $id)->get()->count();
         // dd($kelas);
-        return view('kelas.edit', ['data' => $kelas, 'laki' => $laki, 'perempuan' => $perempuan]);
+        return view('kelas.edit', [
+            'optionsLevel' => $optionsLevel, 
+            'guru' => $data_guru,
+            'data' => $kelas, 
+            'laki' => $laki, 
+            'perempuan' => $perempuan
+        ]);
     }
 
     /**
@@ -173,6 +202,12 @@ class KelasController extends Controller
      */
     public function update(Request $request, $id)
     {        
+        Kelas::where('id', $id)->update([
+            'nama' => $request->nama,
+            'user_id' => $request->user_id,
+            'level' => $request->level
+        ]);
+        
         Rombel::where('kelas_id', $id)->delete();
         if(!is_null($request->selected_siswa)){
             $data = [];
