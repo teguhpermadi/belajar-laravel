@@ -7,6 +7,17 @@
 @stop
 
     @section('content')
+
+    @if(flash()->message)
+        <div class="alert {{ flash()->class }}">
+            {{ flash()->message }}
+        </div>
+
+        @if(flash()->level === 'error')
+            This was an error.
+        @endif
+    @endif
+    
     <div class="row">
         <div class="col-12">
             <x-adminlte-card title="Siswa">

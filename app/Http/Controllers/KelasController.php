@@ -207,7 +207,7 @@ class KelasController extends Controller
             'user_id' => $request->user_id,
             'level' => $request->level
         ]);
-        
+
         Rombel::where('kelas_id', $id)->delete();
         if(!is_null($request->selected_siswa)){
             $data = [];
@@ -219,6 +219,7 @@ class KelasController extends Controller
             }
             Rombel::insert($data);
         }
+        flash()->warning('Data berhasil diubah');
         return to_route('kelas.index');
     }
 
