@@ -277,6 +277,11 @@ return [
             'icon'        => 'fas fa-circle',
         ],
         [
+            'text'        => 'Users',
+            'route'         => 'users.index',
+            'icon'        => 'fas fa-circle',
+        ],
+        [
             'text'        => 'pages',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',

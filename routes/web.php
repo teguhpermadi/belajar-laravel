@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\UsersController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfilSekolahController;
 use App\Http\Controllers\SiswaController;
@@ -52,6 +53,8 @@ Route::group(['middleware' => ['auth', 'tahunAjaran']], function () {
         Route::resource('guru', GuruController::class);
         Route::get('tahun/data', [TahunController::class, 'anyData'])->name('tahun.data');
         Route::resource('tahun', TahunController::class);
+        Route::get('users/data', [UsersController::class, 'anyData'])->name('users.data');
+        Route::resource('users', UsersController::class);
 
         Route::get('/tes', function(){
             return session()->get('tahun_id');
